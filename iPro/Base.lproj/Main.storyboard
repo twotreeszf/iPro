@@ -32,11 +32,11 @@
                         <viewControllerLayoutGuide type="bottom" id="pOR-dy-JGj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1ab-aP-9LP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ht8-bz-4zJ">
-                                <rect key="frame" x="0.0" y="184" width="320" height="200"/>
+                                <rect key="frame" x="0.0" y="152" width="320" height="200"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugR-e8-qkY">
                                         <rect key="frame" x="60" y="8" width="200" height="60"/>
@@ -63,6 +63,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="Irf-IG-fR2"/>
                                     <constraint firstAttribute="height" constant="200" id="Sdk-kU-uZS"/>
                                 </constraints>
                             </view>
@@ -71,9 +72,17 @@
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="ht8-bz-4zJ" secondAttribute="centerY" id="0DV-mn-S3a"/>
                             <constraint firstItem="ht8-bz-4zJ" firstAttribute="leading" secondItem="1ab-aP-9LP" secondAttribute="leadingMargin" constant="-16" id="HNs-wD-xwQ"/>
+                            <constraint firstAttribute="centerX" secondItem="ht8-bz-4zJ" secondAttribute="centerX" id="Q1g-dv-UvV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ht8-bz-4zJ" secondAttribute="trailing" constant="-16" id="hQ3-bf-hhA"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="HNs-wD-xwQ"/>
+                                <exclude reference="hQ3-bf-hhA"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="LDN-zD-XB5"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>

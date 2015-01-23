@@ -97,7 +97,6 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
     dispatch_queue_t _sessionQueue;
     dispatch_queue_t _videoDataOutputQueue;
 
-    NSURL* _recordingURL;
     RosyWriterRecordingStatus _recordingStatus;
 
     UIBackgroundTaskIdentifier _pipelineRunningTask;
@@ -124,8 +123,6 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
     {
         _previousSecondTimestamps = [[NSMutableArray alloc] init];
         _recordingOrientation = (AVCaptureVideoOrientation)UIDeviceOrientationPortrait;
-
-        _recordingURL = [[NSURL alloc] initFileURLWithPath:[NSString pathWithComponents:@[ NSTemporaryDirectory(), @"Movie.MOV" ]]];
 
         _sessionQueue = dispatch_queue_create("com.apple.sample.capturepipeline.session", DISPATCH_QUEUE_SERIAL);
 
@@ -163,7 +160,6 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
         CFRelease(_outputAudioFormatDescription);
 
     _recorder = nil;
-    _recordingURL = nil;
 }
 
 #pragma mark Delegate
@@ -572,7 +568,7 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
 
 #pragma mark Recording
 
-- (void)startRecording
+- (void)startRecordingWithURL:(NSURL*)url
 {
     @synchronized(self)
     {
@@ -585,7 +581,7 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
         [self transitionToRecordingStatus:RosyWriterRecordingStatusStartingRecording error:nil];
     }
 
-    MovieRecorder* recorder = [[MovieRecorder alloc] initWithURL:_recordingURL];
+    MovieRecorder* recorder = [[MovieRecorder alloc] initWithURL:url];
     [recorder addAudioTrackWithSourceFormatDescription:self.outputAudioFormatDescription settings:_audioCompressionSettings];
 
     CGAffineTransform videoTransform = [self transformFromVideoBufferOrientationToOrientation:self.recordingOrientation withAutoMirroring:NO]; // Front camera recording shouldn't be mirrored
@@ -654,20 +650,6 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
     }
 
     self.recorder = nil;
-
-    ALAssetsLibrary* library = [[ALAssetsLibrary alloc] init];
-    [library writeVideoAtPathToSavedPhotosAlbum:_recordingURL completionBlock:^(NSURL* assetURL, NSError* error) {
-		
-		[[NSFileManager defaultManager] removeItemAtURL:_recordingURL error:NULL];
-		
- 		@synchronized( self ) {
-			if ( _recordingStatus != RosyWriterRecordingStatusStoppingRecording ) {
-				@throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Expected to be in StoppingRecording state" userInfo:nil];
-				return;
-			}
-			[self transitionToRecordingStatus:RosyWriterRecordingStatusIdle error:error];
-		}
-    }];
 }
 
 #pragma mark Recording State Machine

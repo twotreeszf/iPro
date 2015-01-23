@@ -8,12 +8,13 @@
 
 #import "IPServiceHostVC.h"
 #import "RosyWriterCapturePipeline.h"
+#import "TTImageUtilities.h"
 
 @interface IPServiceHostVC () <RosyWriterCapturePipelineDelegate>
 {
-    RosyWriterCapturePipeline*	_capture;
-	NSOperationQueue*			_optQueue;
-	BOOL						_orientationSetuped;
+    RosyWriterCapturePipeline* _capture;
+    NSOperationQueue* _optQueue;
+    BOOL _orientationSetuped;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView* previewImage;
@@ -26,18 +27,24 @@
 {
     [super viewDidLoad];
 
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
+
     _capture = [RosyWriterCapturePipeline new];
-	[_capture setDelegate:self callbackQueue:dispatch_get_main_queue()];
-	
-	_optQueue = [NSOperationQueue new];
+    [_capture setDelegate:self callbackQueue:dispatch_get_main_queue()];
+
+    _optQueue = [NSOperationQueue new];
+	_optQueue.maxConcurrentOperationCount = 1;
 }
 
 - (IBAction)onRecord:(id)sender
 {
     [_capture startRunning];
 
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		[_capture startRecording];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
+	{
+		NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+		NSString* moviePath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.mov", time(NULL)]];
+		[_capture startRecordingWithURL:[NSURL fileURLWithPath:moviePath]];
     });
 }
 
@@ -45,8 +52,8 @@
 {
     [_capture stopRecording];
     [_capture stopRunning];
-	
-	_orientationSetuped = NO;
+
+    _orientationSetuped = NO;
 }
 
 - (void)capturePipeline:(RosyWriterCapturePipeline*)capturePipeline didStopRunningWithError:(NSError*)error
@@ -55,33 +62,15 @@
 
 - (void)capturePipeline:(RosyWriterCapturePipeline*)capturePipeline previewPixelBufferReadyForDisplay:(CVPixelBufferRef)previewPixelBuffer
 {
-	CFRetain(previewPixelBuffer);
+    CFRetain(previewPixelBuffer);
 
-	[_optQueue cancelAllOperations];
-	[_optQueue addOperationWithBlock:^
+    [_optQueue cancelAllOperations];
+    [_optQueue addOperationWithBlock:^
 	{
-		TTCFEasyReleasePool* pool = [TTCFEasyReleasePool new];
-		[pool autorelease:previewPixelBuffer];
+		TTEasyReleasePool* pool = [TTEasyReleasePool new];
+		[pool autoreleaseCFOBJ:previewPixelBuffer];
 		
-		int w = CVPixelBufferGetWidth(previewPixelBuffer);
-		int h = CVPixelBufferGetHeight(previewPixelBuffer);
-		
-		UIGraphicsBeginImageContext(CGSizeMake(w, h));
-		
-		CGContextRef c = UIGraphicsGetCurrentContext();
-		unsigned char* data = CGBitmapContextGetData(c);
-		if (data != NULL)
-		{
-			CVPixelBufferLockBaseAddress(previewPixelBuffer, 0);
-			unsigned char* buffer = CVPixelBufferGetBaseAddress(previewPixelBuffer);
-			memcpy(data, buffer, w * h * 4);
-			
-			CVPixelBufferUnlockBaseAddress(previewPixelBuffer, 0);
-		}
-		
-		UIImage* img = UIGraphicsGetImageFromCurrentImageContext();
-		
-		UIGraphicsEndImageContext();
+		UIImage* img = [TTImageUtilities vImageAspectScaleImage:previewPixelBuffer KeepLongside:720.0 HighQuality:NO];
 		
 		[[NSOperationQueue mainQueue] addOperationWithBlock:^
 		 {
@@ -95,7 +84,7 @@
 			 
 			 _previewImage.image = img;
 		 }];
-	}];
+    }];
 }
 
 - (void)capturePipelineDidRunOutOfPreviewBuffers:(RosyWriterCapturePipeline*)capturePipeline

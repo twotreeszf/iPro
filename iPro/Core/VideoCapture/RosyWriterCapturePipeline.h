@@ -60,7 +60,7 @@
 
 // Must be running before starting recording
 // These methods are asynchronous, see the recording delegate callbacks
-- (void)startRecording;
+- (void)startRecordingWithURL:(NSURL*)url;
 - (void)stopRecording;
 
 @property (readwrite) AVCaptureVideoOrientation recordingOrientation; // client can set the orientation for the recorded movie
