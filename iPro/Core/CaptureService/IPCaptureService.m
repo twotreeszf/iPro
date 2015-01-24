@@ -46,6 +46,18 @@
 		return [service queryStatus:request];
 	}];
 	
+	[_webServer addHandlerForMethod:@"GET" path:kAPIStartCapturing requestClass:[GCDWebServerRequest class] processBlock:^
+	 GCDWebServerResponse *(GCDWebServerRequest *request)
+	 {
+		 return [service startCapturing:request];
+	 }];
+	
+	[_webServer addHandlerForMethod:@"GET" path:kAPIStopCapturing requestClass:[GCDWebServerRequest class] processBlock:^
+	 GCDWebServerResponse *(GCDWebServerRequest *request)
+	 {
+		 return [service stopCapturing:request];
+	 }];
+	
 	[_webServer addHandlerForMethod:@"GET" path:kAPIGetPreviewFrame requestClass:[GCDWebServerRequest class] processBlock:^
 	 GCDWebServerResponse *(GCDWebServerRequest *request)
 	 {
@@ -90,17 +102,13 @@
 		NSArray* defaultPorts = @[@80, @88, @8888, @8080];
 		for (NSNumber* port in defaultPorts)
 		{
-			ret = [_webServer startWithPort:[port unsignedIntegerValue] bonjourName:nil];
+			ret = [_webServer startWithPort:[port unsignedIntegerValue] bonjourName:kServiceName];
 			if (ret)
 				break;
 		}
 		if (!ret)
 			ret = [_webServer startWithPort:0 bonjourName:kServiceName];
 		ERROR_CHECK_BOOL(ret);
-		
-		[_capture startRunning];
-		
-		_status = CS_Running;
 	}
 	
 Exit0:
@@ -110,18 +118,22 @@ Exit0:
 - (void)stop
 {
 	if (CS_Recording == _status)
+	{
 		[_capture stopRecording];
-	_status = CS_Running;
+		_status = CS_Running;
+	}
 	
-	[_capture stopRunning];
+	if (CS_Running == _status)
+	{
+		[_capture stopRunning];
+		_status = CS_Init;
+	}
 	
 	[_optQueue cancelAllOperations];
 	[_optQueue waitUntilAllOperationsAreFinished];
 	_lastFrame = nil;
 	
 	[_webServer stop];
-	
-	_status = CS_Init;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -129,7 +141,33 @@ Exit0:
 
 - (GCDWebServerResponse*)queryStatus:(GCDWebServerRequest*)request
 {
-	return [GCDWebServerDataResponse responseWithJSONObject:@{ kStatus : [NSNumber numberWithInteger:_status] }];
+	return [GCDWebServerDataResponse responseWithJSONObject:@{ kStatus : [NSNumber numberWithInt:_status] }];
+}
+
+- (GCDWebServerResponse*)startCapturing:(GCDWebServerRequest*)request
+{
+	if (CS_Init != _status)
+		return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not in init state"];
+	else
+	{
+		[_capture startRunning];
+		_status = CS_Running;
+		
+		return [GCDWebServerDataResponse responseWithJSONObject:@{ kResult : kOK}];
+	}
+}
+
+- (GCDWebServerResponse*)stopCapturing:(GCDWebServerRequest*)request
+{
+	if (CS_Running != _status)
+		return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not in running state"];
+	else
+	{
+		[_capture stopRunning];
+		_status = CS_Init;
+		
+		return [GCDWebServerDataResponse responseWithJSONObject:@{ kResult : kOK}];
+	}
 }
 
 - (GCDWebServerResponse*)getPreviewFrame:(GCDWebServerRequest*)request
@@ -145,7 +183,7 @@ Exit0:
 		return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_NotFound message:@"Preivew frame not ready"];
 	else
 	{
-		return [GCDWebServerDataResponse responseWithData:lastFrame contentType:@"application/octet-stream"];
+		return [GCDWebServerDataResponse responseWithData:lastFrame contentType:@"image/jpeg"];
 	}
 }
 

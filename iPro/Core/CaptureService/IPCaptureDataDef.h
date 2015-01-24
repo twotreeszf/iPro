@@ -13,13 +13,16 @@ typedef NS_ENUM(NSUInteger, IPCaptrueStatus)
 {
 	CS_Init = 0,
 	CS_Running,
-	CS_Recording
+	CS_Recording,
+	CS_Lost
 };
 
-#define kAPIQueryStatus				@"querystatus"
-#define kAPIGetPreviewFrame			@"getpreviewframe"
-#define kAPIStartRecording			@"startrecording"
-#define kAPIStopRecording			@"stoprecording"
+#define kAPIQueryStatus				@"/querystatus"
+#define kAPIStartCapturing			@"/startCapturing"
+#define kAPIStopCapturing			@"/stopCapturing"
+#define kAPIGetPreviewFrame			@"/getpreviewframe"
+#define kAPIStartRecording			@"/startrecording"
+#define kAPIStopRecording			@"/stoprecording"
 
 #define kServiceName				@"RemoteVideoCapture"
 #define kStatus						@"Status"

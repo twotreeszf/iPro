@@ -10,4 +10,6 @@
 
 @interface IPRemoteControlVC : UIViewController
 
+@property(nonatomic, strong) NSString* serverURL;
+
 @end

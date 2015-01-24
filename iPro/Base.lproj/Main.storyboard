@@ -99,11 +99,47 @@
                         <viewControllerLayoutGuide type="bottom" id="ipy-2u-1JT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ru2-eq-epc">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l9r-Ip-Pcy">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6V1-Ty-R6z">
+                                <rect key="frame" x="95" y="436" width="130" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="sAp-8R-Mrt"/>
+                                    <constraint firstAttribute="width" constant="130" id="xND-k0-DIF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <state key="normal" title="[ REC ]">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="l9r-Ip-Pcy" firstAttribute="leading" secondItem="Ru2-eq-epc" secondAttribute="leading" id="6na-n4-e7W"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6V1-Ty-R6z" secondAttribute="trailing" constant="79" id="93i-iw-lGT"/>
+                            <constraint firstItem="ipy-2u-1JT" firstAttribute="top" secondItem="6V1-Ty-R6z" secondAttribute="bottom" constant="8" id="Gbb-wa-lm0"/>
+                            <constraint firstItem="ipy-2u-1JT" firstAttribute="top" secondItem="l9r-Ip-Pcy" secondAttribute="bottom" id="O5L-Gt-1iQ"/>
+                            <constraint firstItem="l9r-Ip-Pcy" firstAttribute="top" secondItem="uok-mE-PDS" secondAttribute="bottom" id="gol-lG-TfH"/>
+                            <constraint firstAttribute="trailing" secondItem="l9r-Ip-Pcy" secondAttribute="trailing" id="nFg-2y-Tbs"/>
+                            <constraint firstAttribute="centerX" secondItem="6V1-Ty-R6z" secondAttribute="centerX" id="yrh-sf-Je4"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="93i-iw-lGT"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="_previewImage" destination="l9r-Ip-Pcy" id="s53-H3-SWy"/>
+                        <outlet property="_recordButton" destination="6V1-Ty-R6z" id="foN-Sp-TlI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1iy-sd-CRC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -120,49 +156,9 @@
                     <view key="view" contentMode="scaleToFill" id="iRf-RE-hM5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XL1-QN-kPm">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxl-kj-czg">
-                                <rect key="frame" x="16" y="72" width="75" height="30"/>
-                                <state key="normal" title="Record">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onRecord:" destination="irK-jM-Phd" eventType="touchUpInside" id="0D1-Pe-Me6"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IwB-02-ZEO">
-                                <rect key="frame" x="99" y="72" width="75" height="30"/>
-                                <state key="normal" title="Stop">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onStop:" destination="irK-jM-Phd" eventType="touchUpInside" id="xKK-aZ-ODu"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="XL1-QN-kPm" firstAttribute="leading" secondItem="iRf-RE-hM5" secondAttribute="leading" id="8IG-Kc-tdz"/>
-                            <constraint firstItem="Z49-Rq-AH2" firstAttribute="top" secondItem="XL1-QN-kPm" secondAttribute="bottom" id="DYx-Ge-OxH"/>
-                            <constraint firstAttribute="centerY" secondItem="XL1-QN-kPm" secondAttribute="centerY" id="Mvy-el-yrT"/>
-                            <constraint firstAttribute="trailing" secondItem="XL1-QN-kPm" secondAttribute="trailing" id="Yhg-V3-PjX"/>
-                            <constraint firstAttribute="centerX" secondItem="XL1-QN-kPm" secondAttribute="centerX" id="nV1-K1-3qS"/>
-                            <constraint firstItem="XL1-QN-kPm" firstAttribute="top" secondItem="ILV-AQ-3wQ" secondAttribute="bottom" id="zuK-tp-2KY"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Mvy-el-yrT"/>
-                                <exclude reference="nV1-K1-3qS"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <connections>
-                        <outlet property="previewImage" destination="XL1-QN-kPm" id="XBr-eI-J5J"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Yw-7k-Zm6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
