@@ -645,8 +645,7 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
             return;
         }
 
-        // No state transition, we are still in the process of stopping.
-        // We will be stopped once we save to the assets library.
+		[self transitionToRecordingStatus:RosyWriterRecordingStatusIdle error:nil];
     }
 
     self.recorder = nil;
