@@ -16,7 +16,7 @@
 #import "GCDWebServerFileResponse.h"
 #import "TTImageUtilities.h"
 
-#define kPreviewFrameWidth		720.0
+#define kPreviewFrameWidth		480.0
 
 @interface IPCaptureService() <RosyWriterCapturePipelineDelegate>
 {

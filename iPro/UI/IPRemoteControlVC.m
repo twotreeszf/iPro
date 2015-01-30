@@ -34,7 +34,7 @@
     [super viewDidLoad];
 	
 	_status = CS_Init;
-	_serverURL = @"http://192.168.136.42/";
+	_serverURL = @"http://192.168.1.105/";
 	
 	NSURL* URL = [NSURL URLWithString:_serverURL];
 	_jsonRequest = [[AFHTTPSessionManager alloc] initWithBaseURL:URL];
@@ -53,7 +53,6 @@
 {
 	_shoudQuit = YES;
 }
-
 
 - (IBAction)onRecord:(id)sender
 {

@@ -13,8 +13,15 @@
 
 + (UIImage*)imageFromPixelBuffer:(CVPixelBufferRef)sourceImage
 {
+	TTEasyReleasePool* pool = [TTEasyReleasePool new];
+	
 	/*Lock the image buffer*/
 	CVPixelBufferLockBaseAddress(sourceImage,0);
+	[pool autoreleaseWithBlock:^
+	{
+		CVPixelBufferUnlockBaseAddress(sourceImage, 0);
+	}];
+	
 	/*Get information about the image*/
 	uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(sourceImage);
 	size_t bytesPerRow = CVPixelBufferGetBytesPerRow(sourceImage);
@@ -23,22 +30,26 @@
 	
 	/*Create a CGImageRef from the CVImageBufferRef*/
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	[pool autoreleaseWithBlock:^
+	{
+		CGColorSpaceRelease(colorSpace);
+	}];
+	
 	CGContextRef newContext = CGBitmapContextCreate(baseAddress, width, height,
 													8, bytesPerRow, colorSpace,
 													kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
-	CGImageRef newImage = CGBitmapContextCreateImage(newContext);
+	[pool autoreleaseWithBlock:^
+	{
+		CGContextRelease(newContext);
+	}];
 	
-	/*We release some components*/
-	CGContextRelease(newContext);
-	CGColorSpaceRelease(colorSpace);
+	CGImageRef newImage = CGBitmapContextCreateImage(newContext);
+	[pool autoreleaseWithBlock:^
+	{
+		CGImageRelease(newImage);
+	}];
 	
 	UIImage *image= [UIImage imageWithCGImage:newImage];
-	
-	/*We relase the CGImageRef*/
-	CGImageRelease(newImage);
-	
-	CVPixelBufferUnlockBaseAddress(sourceImage, 0);
-	
 	return image;
 }
 

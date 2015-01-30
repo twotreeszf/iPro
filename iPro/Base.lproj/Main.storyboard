@@ -32,11 +32,11 @@
                         <viewControllerLayoutGuide type="bottom" id="pOR-dy-JGj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1ab-aP-9LP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ht8-bz-4zJ">
-                                <rect key="frame" x="0.0" y="152" width="320" height="200"/>
+                                <rect key="frame" x="0.0" y="184" width="320" height="200"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugR-e8-qkY">
                                         <rect key="frame" x="60" y="8" width="200" height="60"/>
@@ -82,7 +82,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="LDN-zD-XB5"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
@@ -99,15 +98,15 @@
                         <viewControllerLayoutGuide type="bottom" id="ipy-2u-1JT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ru2-eq-epc">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="xws-wZ-xu3" customClass="GLImageView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6V1-Ty-R6z">
-                                <rect key="frame" x="95" y="436" width="130" height="60"/>
+                                <rect key="frame" x="95" y="500" width="130" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="sAp-8R-Mrt"/>
                                     <constraint firstAttribute="width" constant="130" id="xND-k0-DIF"/>
@@ -127,12 +126,19 @@
                             <constraint firstItem="ipy-2u-1JT" firstAttribute="top" secondItem="6V1-Ty-R6z" secondAttribute="bottom" constant="8" id="Gbb-wa-lm0"/>
                             <constraint firstItem="ipy-2u-1JT" firstAttribute="top" secondItem="xws-wZ-xu3" secondAttribute="bottom" id="VRe-ZL-Spo"/>
                             <constraint firstAttribute="trailing" secondItem="xws-wZ-xu3" secondAttribute="trailing" id="Wqh-fO-5de"/>
+                            <constraint firstItem="xws-wZ-xu3" firstAttribute="top" secondItem="uok-mE-PDS" secondAttribute="bottom" constant="-64" id="eBC-ol-4ZB"/>
+                            <constraint firstItem="ipy-2u-1JT" firstAttribute="top" secondItem="xws-wZ-xu3" secondAttribute="bottom" id="eE5-aG-56O"/>
                             <constraint firstItem="xws-wZ-xu3" firstAttribute="top" secondItem="uok-mE-PDS" secondAttribute="bottom" id="mkT-D4-MIo"/>
                             <constraint firstItem="xws-wZ-xu3" firstAttribute="leading" secondItem="Ru2-eq-epc" secondAttribute="leading" id="oAe-3k-czZ"/>
                             <constraint firstAttribute="centerX" secondItem="6V1-Ty-R6z" secondAttribute="centerX" id="yrh-sf-Je4"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="mkT-D4-MIo"/>
+                                <exclude reference="VRe-ZL-Spo"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="_previewImage" destination="xws-wZ-xu3" id="Fge-SX-Zbo"/>
