@@ -302,6 +302,7 @@
 				7DF725D21A6F8CA000696A26 /* Products */,
 			);
 			sourceTree = "<group>";
+			wrapsLines = 0;
 		};
 		7DF725D21A6F8CA000696A26 /* Products */ = {
 			isa = PBXGroup;

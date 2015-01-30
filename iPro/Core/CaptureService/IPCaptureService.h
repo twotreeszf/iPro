@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface IPCaptureService : NSObject
+
+@property (nonatomic, assign) AVCaptureVideoOrientation recordingOrientation;
 
 - (void)start;
 - (void)stop;

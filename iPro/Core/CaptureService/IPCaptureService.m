@@ -95,6 +95,11 @@
 	_lastFrame = nil;
 }
 
+- (void)setRecordingOrientation:(AVCaptureVideoOrientation)recordingOrientation
+{
+	_capture.recordingOrientation = recordingOrientation;
+}
+
 - (void)start
 {
 	BOOL ret = YES;
@@ -194,7 +199,7 @@ Exit0:
 	else
 	{
 		NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-		NSString* moviePath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld", time(NULL)]];
+		NSString* moviePath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.mov", time(NULL)]];
 		[_capture startRecordingWithURL:[NSURL fileURLWithPath:moviePath]];
 		
 		_status = CS_Recording;
