@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Y8J-yD-OAo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Y8J-yD-OAo">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -103,7 +103,35 @@
                         <subviews>
                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="xws-wZ-xu3" customClass="GLImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[////]:?%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qms-mZ-xOx">
+                                        <rect key="frame" x="256" y="554" width="60" height="10"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="TE1-43-YxW"/>
+                                            <constraint firstAttribute="width" constant="60" id="Z5S-WB-nue"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="? FPS" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xN5-cN-pS9">
+                                        <rect key="frame" x="188" y="554" width="60" height="10"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="QXc-7a-kbs"/>
+                                            <constraint firstAttribute="height" constant="10" id="Ykc-Fg-31z"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Qms-mZ-xOx" firstAttribute="leading" secondItem="xN5-cN-pS9" secondAttribute="trailing" constant="8" id="6OD-lA-a0s"/>
+                                    <constraint firstAttribute="bottom" secondItem="Qms-mZ-xOx" secondAttribute="bottom" constant="4" id="ERz-0E-VG0"/>
+                                    <constraint firstAttribute="bottom" secondItem="xN5-cN-pS9" secondAttribute="bottom" constant="4" id="JcD-3b-gEm"/>
+                                    <constraint firstAttribute="trailing" secondItem="Qms-mZ-xOx" secondAttribute="trailing" constant="4" id="RRf-uu-BVC"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6V1-Ty-R6z">
                                 <rect key="frame" x="95" y="500" width="130" height="60"/>
@@ -141,6 +169,8 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="_batteryLevelLabel" destination="Qms-mZ-xOx" id="izi-TB-llY"/>
+                        <outlet property="_fpsLabel" destination="xN5-cN-pS9" id="rs7-Nu-AAu"/>
                         <outlet property="_previewImage" destination="xws-wZ-xu3" id="Fge-SX-Zbo"/>
                         <outlet property="_recordButton" destination="6V1-Ty-R6z" id="foN-Sp-TlI"/>
                     </connections>

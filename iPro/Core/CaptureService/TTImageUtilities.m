@@ -8,6 +8,7 @@
 
 #import "TTImageUtilities.h"
 #import <Accelerate/Accelerate.h>
+#import "UIImage+Resize.h"
 
 @implementation TTImageUtilities
 
@@ -51,6 +52,54 @@
 	
 	UIImage *image= [UIImage imageWithCGImage:newImage];
 	return image;
+}
+
++ (UIImage*)aspectScaleImage:(CVPixelBufferRef)sourceImage KeepShortside:(CGFloat)shortside
+{
+	CGFloat width = CVPixelBufferGetWidth(sourceImage);
+	CGFloat height = CVPixelBufferGetHeight(sourceImage);
+	
+	CGFloat destWidth;
+	CGFloat destHeight;
+	if (width > height)
+	{
+		destHeight = shortside;
+		destWidth = (width / height) * destHeight;
+	}
+	else
+	{
+		destWidth = shortside;
+		destHeight = (height / width) * destWidth;
+	}
+	
+	return [self scaleImage:sourceImage WithSize:CGSizeMake(destWidth, destHeight)];
+}
+
++ (UIImage*)aspectScaleImage:(CVPixelBufferRef)sourceImage KeepLongside:(CGFloat)longside
+{
+	CGFloat width = CVPixelBufferGetWidth(sourceImage);
+	CGFloat height = CVPixelBufferGetHeight(sourceImage);
+	
+	CGFloat destWidth;
+	CGFloat destHeight;
+	if (width < height)
+	{
+		destHeight = longside;
+		destWidth = (width / height) * destHeight;
+	}
+	else
+	{
+		destWidth = longside;
+		destHeight = (height / width) * destWidth;
+	}
+
+	return [self scaleImage:sourceImage WithSize:CGSizeMake(destWidth, destHeight)];
+}
+
++ (UIImage*)scaleImage:(CVPixelBufferRef)sourceImage WithSize:(CGSize)destSize
+{
+	UIImage* image = [self imageFromPixelBuffer:sourceImage];
+	return [image resizedImageToSize:destSize];
 }
 
 + (UIImage*)vImageAspectScaleImage:(CVPixelBufferRef)sourceImage KeepShortside:(CGFloat)shortside HighQuality:(BOOL)highQuality

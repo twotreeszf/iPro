@@ -15,8 +15,9 @@
 #import "GCDWebServerFileStreamResponse.h"
 #import "GCDWebServerFileResponse.h"
 #import "TTImageUtilities.h"
+#import "UIImage+turboJPEG.h"
 
-#define kPreviewFrameWidth		480.0
+#define kPreviewFrameWidth		960.0
 
 @interface IPCaptureService() <RosyWriterCapturePipelineDelegate>
 {
@@ -146,7 +147,11 @@ Exit0:
 
 - (GCDWebServerResponse*)queryStatus:(GCDWebServerRequest*)request
 {
-	return [GCDWebServerDataResponse responseWithJSONObject:@{ kStatus : [NSNumber numberWithInt:_status] }];
+	NSNumber* batteryLevel = [NSNumber numberWithInt:[UIDevice currentDevice].batteryLevel * 100];
+	return [GCDWebServerDataResponse responseWithJSONObject:@{
+															  kStatus : [NSNumber numberWithInt:_status],
+															  kBattery: batteryLevel
+															  }];
 }
 
 - (GCDWebServerResponse*)startCapturing:(GCDWebServerRequest*)request
@@ -155,6 +160,7 @@ Exit0:
 		return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not in init state"];
 	else
 	{
+		[UIDevice currentDevice].batteryMonitoringEnabled = YES;
 		[_capture startRunning];
 		_status = CS_Running;
 		
@@ -168,6 +174,7 @@ Exit0:
 		return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not in running state"];
 	else
 	{
+		[UIDevice currentDevice].batteryMonitoringEnabled = NO;
 		[_capture stopRunning];
 		_status = CS_Init;
 		
@@ -231,6 +238,15 @@ Exit0:
 
 - (void)capturePipeline:(RosyWriterCapturePipeline*)capturePipeline previewPixelBufferReadyForDisplay:(CVPixelBufferRef)previewPixelBuffer
 {
+	if (_optQueue.operationCount)
+		return;
+	
+	@synchronized(self)
+	{
+		if (_lastFrame)
+			return;
+	}
+	
 	CFRetain(previewPixelBuffer);
 	
 	[_optQueue addOperationWithBlock:^
@@ -242,8 +258,8 @@ Exit0:
 		{
 			if (!_lastFrame)
 			{
-				UIImage* frame = [TTImageUtilities vImageAspectScaleImage:previewPixelBuffer KeepLongside:kPreviewFrameWidth HighQuality:NO];
-				_lastFrame = UIImageJPEGRepresentation(frame, 0.8);
+				UIImage* frame = [TTImageUtilities aspectScaleImage:previewPixelBuffer KeepLongside:kPreviewFrameWidth];
+				_lastFrame = [frame tjEncode:0.8];
 			}
 		}
 	}];

@@ -27,6 +27,11 @@
 		7D53DEAA1A75150800DAD07B /* GLLight.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DEA01A75150800DAD07B /* GLLight.m */; };
 		7D53DEAB1A75150800DAD07B /* GLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DEA21A75150800DAD07B /* GLModel.m */; };
 		7D53DEAC1A75150800DAD07B /* GLModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DEA41A75150800DAD07B /* GLModelView.m */; };
+		7DCA833C1A7F86DC00935B12 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA833A1A7F86DC00935B12 /* UIImage+Resize.m */; };
+		7DDBADE01A7B83C500FE094C /* build-ios-libjpeg-turbo.sh in Resources */ = {isa = PBXBuildFile; fileRef = 7DDBADD61A7B83C500FE094C /* build-ios-libjpeg-turbo.sh */; };
+		7DDBADE11A7B83C500FE094C /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DDBADDE1A7B83C500FE094C /* libjpeg.a */; };
+		7DDBADE21A7B83C500FE094C /* libturbojpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DDBADDF1A7B83C500FE094C /* libturbojpeg.a */; };
+		7DDBADE81A7B856500FE094C /* UIImage+turboJPEG.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDBADE71A7B856500FE094C /* UIImage+turboJPEG.m */; };
 		7DF725D71A6F8CA000696A26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF725D61A6F8CA000696A26 /* main.m */; };
 		7DF725DA1A6F8CA000696A26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF725D91A6F8CA000696A26 /* AppDelegate.m */; };
 		7DF725E01A6F8CA000696A26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF725DE1A6F8CA000696A26 /* Main.storyboard */; };
@@ -114,6 +119,18 @@
 		7D53DEA21A75150800DAD07B /* GLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLModel.m; sourceTree = "<group>"; };
 		7D53DEA31A75150800DAD07B /* GLModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLModelView.h; sourceTree = "<group>"; };
 		7D53DEA41A75150800DAD07B /* GLModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLModelView.m; sourceTree = "<group>"; };
+		7DCA833A1A7F86DC00935B12 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		7DCA833B1A7F86DC00935B12 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		7DDBADD61A7B83C500FE094C /* build-ios-libjpeg-turbo.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "build-ios-libjpeg-turbo.sh"; sourceTree = "<group>"; };
+		7DDBADD81A7B83C500FE094C /* jconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jconfig.h; sourceTree = "<group>"; };
+		7DDBADD91A7B83C500FE094C /* jerror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jerror.h; sourceTree = "<group>"; };
+		7DDBADDA1A7B83C500FE094C /* jmorecfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jmorecfg.h; sourceTree = "<group>"; };
+		7DDBADDB1A7B83C500FE094C /* jpeglib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jpeglib.h; sourceTree = "<group>"; };
+		7DDBADDC1A7B83C500FE094C /* turbojpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = turbojpeg.h; sourceTree = "<group>"; };
+		7DDBADDE1A7B83C500FE094C /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libjpeg.a; sourceTree = "<group>"; };
+		7DDBADDF1A7B83C500FE094C /* libturbojpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libturbojpeg.a; sourceTree = "<group>"; };
+		7DDBADE61A7B856500FE094C /* UIImage+turboJPEG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+turboJPEG.h"; sourceTree = "<group>"; };
+		7DDBADE71A7B856500FE094C /* UIImage+turboJPEG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+turboJPEG.m"; sourceTree = "<group>"; };
 		7DF725D11A6F8CA000696A26 /* iPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DF725D51A6F8CA000696A26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7DF725D61A6F8CA000696A26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -215,6 +232,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D53DE621A6FF0DC00DAD07B /* libz.dylib in Frameworks */,
+				7DDBADE21A7B83C500FE094C /* libturbojpeg.a in Frameworks */,
+				7DDBADE11A7B83C500FE094C /* libjpeg.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +311,37 @@
 				7D53DEA41A75150800DAD07B /* GLModelView.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		7DDBADD51A7B83C500FE094C /* libjpeg-turbo */ = {
+			isa = PBXGroup;
+			children = (
+				7DDBADD61A7B83C500FE094C /* build-ios-libjpeg-turbo.sh */,
+				7DDBADD71A7B83C500FE094C /* include */,
+				7DDBADDD1A7B83C500FE094C /* lib */,
+			);
+			path = "libjpeg-turbo";
+			sourceTree = "<group>";
+		};
+		7DDBADD71A7B83C500FE094C /* include */ = {
+			isa = PBXGroup;
+			children = (
+				7DDBADD81A7B83C500FE094C /* jconfig.h */,
+				7DDBADD91A7B83C500FE094C /* jerror.h */,
+				7DDBADDA1A7B83C500FE094C /* jmorecfg.h */,
+				7DDBADDB1A7B83C500FE094C /* jpeglib.h */,
+				7DDBADDC1A7B83C500FE094C /* turbojpeg.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		7DDBADDD1A7B83C500FE094C /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				7DDBADDE1A7B83C500FE094C /* libjpeg.a */,
+				7DDBADDF1A7B83C500FE094C /* libturbojpeg.a */,
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 		7DF725C81A6F8CA000696A26 = {
@@ -376,10 +426,10 @@
 			isa = PBXGroup;
 			children = (
 				7DF726041A6F8E2B00696A26 /* AutoLocalize */,
-				7DF726071A6F8E2B00696A26 /* CommonDef.h */,
-				7DF726081A6F8E2B00696A26 /* ErrorCheck.h */,
 				7DF726091A6F8E2B00696A26 /* Log */,
 				7DF726281A6F8E2B00696A26 /* MBProgressHUD */,
+				7DF726071A6F8E2B00696A26 /* CommonDef.h */,
+				7DF726081A6F8E2B00696A26 /* ErrorCheck.h */,
 				7DF7262B1A6F8E2B00696A26 /* NSMutableArray+Queue.h */,
 				7DF7262C1A6F8E2B00696A26 /* NSMutableArray+Queue.m */,
 				7DF7262D1A6F8E2B00696A26 /* NSMutableArray+Stack.h */,
@@ -390,6 +440,10 @@
 				7DF726371A6F8E2B00696A26 /* TTEasyReleasePool.m */,
 				7DF726381A6F8E2B00696A26 /* UIView+UserData.h */,
 				7DF726391A6F8E2B00696A26 /* UIView+UserData.m */,
+				7DDBADE61A7B856500FE094C /* UIImage+turboJPEG.h */,
+				7DDBADE71A7B856500FE094C /* UIImage+turboJPEG.m */,
+				7DCA833A1A7F86DC00935B12 /* UIImage+Resize.m */,
+				7DCA833B1A7F86DC00935B12 /* UIImage+Resize.h */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -466,6 +520,7 @@
 		7DF726751A6FC68900696A26 /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				7DDBADD51A7B83C500FE094C /* libjpeg-turbo */,
 				7D53DE911A75150800DAD07B /* GLView */,
 				7D53DE711A724A7200DAD07B /* AFNetworking */,
 				7DF726761A6FC68900696A26 /* GCDWebServer */,
@@ -606,6 +661,7 @@
 			files = (
 				7DF725E01A6F8CA000696A26 /* Main.storyboard in Resources */,
 				7DF725E51A6F8CA000696A26 /* LaunchScreen.xib in Resources */,
+				7DDBADE01A7B83C500FE094C /* build-ios-libjpeg-turbo.sh in Resources */,
 				7DF725E21A6F8CA000696A26 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,6 +705,7 @@
 				7D53DE851A724A7200DAD07B /* AFHTTPRequestOperation.m in Sources */,
 				7DF7263F1A6F8E2B00696A26 /* DDLog.m in Sources */,
 				7DF726411A6F8E2B00696A26 /* DDContextFilterLogFormatter.m in Sources */,
+				7DDBADE81A7B856500FE094C /* UIImage+turboJPEG.m in Sources */,
 				7DF7263D1A6F8E2B00696A26 /* DDASLLogger.m in Sources */,
 				7DF726511A6F940100696A26 /* IPMainVC.m in Sources */,
 				7D53DE661A70A0C500DAD07B /* GCDWebServerFileStreamResponse.m in Sources */,
@@ -670,6 +727,7 @@
 				7DF7269B1A6FC68900696A26 /* GCDWebServerDataRequest.m in Sources */,
 				7DF726451A6F8E2B00696A26 /* KPLog.m in Sources */,
 				7D53DE861A724A7200DAD07B /* AFHTTPRequestOperationManager.m in Sources */,
+				7DCA833C1A7F86DC00935B12 /* UIImage+Resize.m in Sources */,
 				7DF726401A6F8E2B00696A26 /* DDTTYLogger.m in Sources */,
 				7DF7264D1A6F8E2B00696A26 /* UIView+UserData.m in Sources */,
 				7DF726A11A6FC68900696A26 /* GCDWebServerFileResponse.m in Sources */,
@@ -791,6 +849,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = iPro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/iPro/3rdParty/libjpeg-turbo/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -803,6 +865,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = iPro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/iPro/3rdParty/libjpeg-turbo/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

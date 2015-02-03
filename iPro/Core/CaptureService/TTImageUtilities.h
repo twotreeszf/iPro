@@ -11,6 +11,11 @@
 @interface TTImageUtilities : NSObject
 
 + (UIImage*)imageFromPixelBuffer:(CVPixelBufferRef)sourceImage;
+
++ (UIImage*)aspectScaleImage:(CVPixelBufferRef)sourceImage KeepShortside:(CGFloat)shortside;
++ (UIImage*)aspectScaleImage:(CVPixelBufferRef)sourceImage KeepLongside:(CGFloat)longside;
++ (UIImage*)scaleImage:(CVPixelBufferRef)sourceImage WithSize:(CGSize)destSize;
+
 + (UIImage*)vImageAspectScaleImage:(CVPixelBufferRef)sourceImage KeepShortside:(CGFloat)shortside HighQuality:(BOOL)highQuality;
 + (UIImage*)vImageAspectScaleImage:(CVPixelBufferRef)sourceImage KeepLongside:(CGFloat)longside HighQuality:(BOOL)highQuality;
 + (UIImage*)vImageScaleImage:(CVPixelBufferRef)sourceImage WithSize:(CGSize)destSize HighQuality:(BOOL)highQuality;

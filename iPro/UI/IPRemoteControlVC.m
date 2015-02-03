@@ -14,14 +14,18 @@
 
 @interface IPRemoteControlVC ()
 {
-	
 	__weak IBOutlet GLImageView*	_previewImage;
+	__weak IBOutlet UILabel*		_batteryLevelLabel;
+	__weak IBOutlet UILabel*		_fpsLabel;
 	__weak IBOutlet UIButton*		_recordButton;
 	
 	AFHTTPSessionManager* _jsonRequest;
 	AFHTTPSessionManager* _dataReqeust;
 	
 	volatile IPCaptrueStatus	_status;
+	int							_batteryLevel;
+	NSTimeInterval				_lastFrameTime;
+	int							_frameCount;
 	volatile BOOL				_shoudQuit;
 }
 
@@ -34,6 +38,7 @@
     [super viewDidLoad];
 	
 	_status = CS_Init;
+	//_serverURL = @"http://172.20.10.3/";
 	_serverURL = @"http://192.168.1.105/";
 	
 	NSURL* URL = [NSURL URLWithString:_serverURL];
@@ -70,8 +75,9 @@
 {
 	[_jsonRequest GET:kAPIQueryStatus parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
 	{
-		 NSDictionary* dic = (NSDictionary*)responseObject;
-		 _status = [((NSNumber*)dic[kStatus]) intValue];
+		NSDictionary* dic = (NSDictionary*)responseObject;
+		_status = [((NSNumber*)dic[kStatus]) intValue];
+		_batteryLevel = [((NSNumber*)dic[kBattery]) intValue];
 
 		[self dealStatus];
 	}
@@ -117,7 +123,7 @@
 		 UIImage* frame = (UIImage*)responseObject;
 		 _previewImage.image = [GLImage imageWithUIImage:frame];
 		 
-		 [self refreshStatus];
+		 [self dealStatus];
 	 }
 	failure:^(NSURLSessionDataTask *task, NSError *error)
 	 {
@@ -159,21 +165,34 @@
 
 - (void)dealStatus
 {
-	// config button status
+	// config UI status
     switch (_status)
     {
     case CS_Init:
     case CS_Lost:
         _recordButton.enabled = NO;
         _recordButton.titleLabel.textColor = [UIColor lightGrayColor];
+		_batteryLevelLabel.text = @"[////]:?%";
+		_fpsLabel.text = @"? FPS";
         break;
     case CS_Running:
+	case CS_Recording:
+		if (CS_Running == _status)
+			_recordButton.titleLabel.textColor = [UIColor blueColor];
+		else
+			_recordButton.titleLabel.textColor = [UIColor redColor];
+
         _recordButton.enabled = YES;
-        _recordButton.titleLabel.textColor = [UIColor blueColor];
-        break;
-    case CS_Recording:
-        _recordButton.enabled = YES;
-        _recordButton.titleLabel.textColor = [UIColor redColor];
+		_batteryLevelLabel.text = [NSString stringWithFormat:@"[////]:%02d%%", _batteryLevel];
+			
+		NSTimeInterval timeNow = [[NSDate date] timeIntervalSince1970];
+		if (_lastFrameTime > 0.0)
+		{
+			NSTimeInterval frameSpan = timeNow - _lastFrameTime;
+			int fps = 1.0 / frameSpan;
+			_fpsLabel.text = [NSString stringWithFormat:@"%d FPS", fps];
+		}
+		_lastFrameTime = timeNow;
         break;
 
     default:
@@ -189,7 +208,16 @@
         }
         else if ((CS_Running == _status) || (CS_Recording == _status))
         {
-            [self fetchPreview];
+			++_frameCount;
+			if (_frameCount > 20)
+			{
+				_frameCount = 0;
+				[self refreshStatus];
+			}
+			else
+			{
+				[self fetchPreview];
+			}
         }
         else if (CS_Lost == _status)
         {
