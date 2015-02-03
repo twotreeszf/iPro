@@ -12,7 +12,7 @@
 #import "GLImage.h"
 #import "GLImageView.h"
 
-@interface IPRemoteControlVC ()
+@interface IPRemoteControlVC () <NSNetServiceBrowserDelegate>
 {
 	__weak IBOutlet GLImageView*	_previewImage;
 	__weak IBOutlet UILabel*		_batteryLevelLabel;
@@ -38,8 +38,6 @@
     [super viewDidLoad];
 	
 	_status = CS_Init;
-	//_serverURL = @"http://172.20.10.3/";
-	_serverURL = @"http://192.168.1.105/";
 	
 	NSURL* URL = [NSURL URLWithString:_serverURL];
 	_jsonRequest = [[AFHTTPSessionManager alloc] initWithBaseURL:URL];

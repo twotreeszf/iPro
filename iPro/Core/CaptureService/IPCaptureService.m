@@ -108,12 +108,15 @@
 		NSArray* defaultPorts = @[@80, @88, @8888, @8080];
 		for (NSNumber* port in defaultPorts)
 		{
-			ret = [_webServer startWithPort:[port unsignedIntegerValue] bonjourName:kServiceName];
+			NSMutableDictionary* options = [NSMutableDictionary dictionary];
+			[options setObject:port forKey:GCDWebServerOption_Port];
+			[options setValue:kServiceName forKey:GCDWebServerOption_BonjourName];
+			[options setValue:kServiceType forKey:GCDWebServerOption_BonjourType];
+			
+			ret = [_webServer startWithOptions:options error:NULL];
 			if (ret)
 				break;
 		}
-		if (!ret)
-			ret = [_webServer startWithPort:0 bonjourName:kServiceName];
 		ERROR_CHECK_BOOL(ret);
 	}
 	

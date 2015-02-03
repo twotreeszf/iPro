@@ -25,6 +25,7 @@ typedef NS_ENUM(NSUInteger, IPCaptrueStatus)
 #define kAPIStopRecording			@"/stoprecording"
 
 #define kServiceName				@"RemoteVideoCapture"
+#define kServiceType				@"_remote_video_capture._tcp."
 #define kStatus						@"Status"
 #define kBattery					@"Battery"
 #define kResult						@"Result"

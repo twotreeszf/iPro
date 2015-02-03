@@ -28,6 +28,10 @@
 		7D53DEAB1A75150800DAD07B /* GLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DEA21A75150800DAD07B /* GLModel.m */; };
 		7D53DEAC1A75150800DAD07B /* GLModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DEA41A75150800DAD07B /* GLModelView.m */; };
 		7DCA833C1A7F86DC00935B12 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA833A1A7F86DC00935B12 /* UIImage+Resize.m */; };
+		7DCA83421A80A3B800935B12 /* IPServiceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA83411A80A3B800935B12 /* IPServiceListCell.m */; };
+		7DCA83451A80A51600935B12 /* IPServiceListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA83441A80A51600935B12 /* IPServiceListVC.m */; };
+		7DCA834C1A80AAEE00935B12 /* UIViewController+Visible.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA834A1A80AAEE00935B12 /* UIViewController+Visible.m */; };
+		7DCA834F1A80B37600935B12 /* NSNetService+ParseAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA834E1A80B37600935B12 /* NSNetService+ParseAddress.m */; };
 		7DDBADE01A7B83C500FE094C /* build-ios-libjpeg-turbo.sh in Resources */ = {isa = PBXBuildFile; fileRef = 7DDBADD61A7B83C500FE094C /* build-ios-libjpeg-turbo.sh */; };
 		7DDBADE11A7B83C500FE094C /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DDBADDE1A7B83C500FE094C /* libjpeg.a */; };
 		7DDBADE21A7B83C500FE094C /* libturbojpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DDBADDF1A7B83C500FE094C /* libturbojpeg.a */; };
@@ -121,6 +125,14 @@
 		7D53DEA41A75150800DAD07B /* GLModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLModelView.m; sourceTree = "<group>"; };
 		7DCA833A1A7F86DC00935B12 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		7DCA833B1A7F86DC00935B12 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		7DCA83401A80A3B800935B12 /* IPServiceListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPServiceListCell.h; sourceTree = "<group>"; };
+		7DCA83411A80A3B800935B12 /* IPServiceListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPServiceListCell.m; sourceTree = "<group>"; };
+		7DCA83431A80A51600935B12 /* IPServiceListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPServiceListVC.h; sourceTree = "<group>"; };
+		7DCA83441A80A51600935B12 /* IPServiceListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPServiceListVC.m; sourceTree = "<group>"; };
+		7DCA834A1A80AAEE00935B12 /* UIViewController+Visible.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Visible.m"; sourceTree = "<group>"; };
+		7DCA834B1A80AAEE00935B12 /* UIViewController+Visible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Visible.h"; sourceTree = "<group>"; };
+		7DCA834D1A80B37600935B12 /* NSNetService+ParseAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNetService+ParseAddress.h"; sourceTree = "<group>"; };
+		7DCA834E1A80B37600935B12 /* NSNetService+ParseAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNetService+ParseAddress.m"; sourceTree = "<group>"; };
 		7DDBADD61A7B83C500FE094C /* build-ios-libjpeg-turbo.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "build-ios-libjpeg-turbo.sh"; sourceTree = "<group>"; };
 		7DDBADD81A7B83C500FE094C /* jconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jconfig.h; sourceTree = "<group>"; };
 		7DDBADD91A7B83C500FE094C /* jerror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jerror.h; sourceTree = "<group>"; };
@@ -398,6 +410,10 @@
 				7DF726531A6F948F00696A26 /* IPRemoteControlVC.m */,
 				7DF726551A6F94AA00696A26 /* IPServiceHostVC.h */,
 				7DF726561A6F94AA00696A26 /* IPServiceHostVC.m */,
+				7DCA83401A80A3B800935B12 /* IPServiceListCell.h */,
+				7DCA83411A80A3B800935B12 /* IPServiceListCell.m */,
+				7DCA83431A80A51600935B12 /* IPServiceListVC.h */,
+				7DCA83441A80A51600935B12 /* IPServiceListVC.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -444,6 +460,10 @@
 				7DDBADE71A7B856500FE094C /* UIImage+turboJPEG.m */,
 				7DCA833A1A7F86DC00935B12 /* UIImage+Resize.m */,
 				7DCA833B1A7F86DC00935B12 /* UIImage+Resize.h */,
+				7DCA834A1A80AAEE00935B12 /* UIViewController+Visible.m */,
+				7DCA834B1A80AAEE00935B12 /* UIViewController+Visible.h */,
+				7DCA834D1A80B37600935B12 /* NSNetService+ParseAddress.h */,
+				7DCA834E1A80B37600935B12 /* NSNetService+ParseAddress.m */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -684,12 +704,14 @@
 				7DF726481A6F8E2B00696A26 /* NSMutableArray+Queue.m in Sources */,
 				7DF726961A6FC68900696A26 /* GCDWebServer.m in Sources */,
 				7D53DE6A1A70A9DF00DAD07B /* TTImageUtilities.m in Sources */,
+				7DCA834C1A80AAEE00935B12 /* UIViewController+Visible.m in Sources */,
 				7DF7269E1A6FC68900696A26 /* GCDWebServerURLEncodedFormRequest.m in Sources */,
 				7D53DEAB1A75150800DAD07B /* GLModel.m in Sources */,
 				7DF7269D1A6FC68900696A26 /* GCDWebServerMultiPartFormRequest.m in Sources */,
 				7D53DEA51A75150800DAD07B /* GLUtils.m in Sources */,
 				7DF7269F1A6FC68900696A26 /* GCDWebServerDataResponse.m in Sources */,
 				7D53DE871A724A7200DAD07B /* AFHTTPSessionManager.m in Sources */,
+				7DCA83421A80A3B800935B12 /* IPServiceListCell.m in Sources */,
 				7DF7263C1A6F8E2B00696A26 /* DDASLLogCapture.m in Sources */,
 				7D53DE8C1A724A7200DAD07B /* AFURLResponseSerialization.m in Sources */,
 				7DF726021A6F8DD400696A26 /* RosyWriterCapturePipeline.m in Sources */,
@@ -706,6 +728,7 @@
 				7DF7263F1A6F8E2B00696A26 /* DDLog.m in Sources */,
 				7DF726411A6F8E2B00696A26 /* DDContextFilterLogFormatter.m in Sources */,
 				7DDBADE81A7B856500FE094C /* UIImage+turboJPEG.m in Sources */,
+				7DCA834F1A80B37600935B12 /* NSNetService+ParseAddress.m in Sources */,
 				7DF7263D1A6F8E2B00696A26 /* DDASLLogger.m in Sources */,
 				7DF726511A6F940100696A26 /* IPMainVC.m in Sources */,
 				7D53DE661A70A0C500DAD07B /* GCDWebServerFileStreamResponse.m in Sources */,
@@ -724,6 +747,7 @@
 				7DF726981A6FC68900696A26 /* GCDWebServerFunctions.m in Sources */,
 				7DF726971A6FC68900696A26 /* GCDWebServerConnection.m in Sources */,
 				7D53DE8B1A724A7200DAD07B /* AFURLRequestSerialization.m in Sources */,
+				7DCA83451A80A51600935B12 /* IPServiceListVC.m in Sources */,
 				7DF7269B1A6FC68900696A26 /* GCDWebServerDataRequest.m in Sources */,
 				7DF726451A6F8E2B00696A26 /* KPLog.m in Sources */,
 				7D53DE861A724A7200DAD07B /* AFHTTPRequestOperationManager.m in Sources */,
