@@ -200,6 +200,7 @@ typedef NS_ENUM( NSInteger, MovieRecorderStatus ) {
 			[[NSFileManager defaultManager] removeItemAtURL:_URL error:NULL];
 			
 			_assetWriter = [[AVAssetWriter alloc] initWithURL:_URL fileType:AVFileTypeQuickTimeMovie error:&error];
+			_assetWriter.movieFragmentInterval = CMTimeMake(10.0, 1.0);
 			
 			// Create and add inputs
 			if ( ! error && _videoTrackSourceFormatDescription ) {

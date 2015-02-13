@@ -19,8 +19,8 @@
 	__weak IBOutlet UILabel*		_fpsLabel;
 	__weak IBOutlet UIButton*		_recordButton;
 	
-	AFHTTPSessionManager* _jsonRequest;
-	AFHTTPSessionManager* _dataReqeust;
+	AFHTTPSessionManager*		_jsonRequest;
+	AFHTTPSessionManager*		_dataReqeust;
 	
 	volatile IPCaptrueStatus	_status;
 	int							_batteryLevel;

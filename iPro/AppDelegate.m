@@ -17,6 +17,7 @@
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
     [UIApplication sharedApplication].idleTimerDisabled = YES;
+	[UIDevice currentDevice].batteryMonitoringEnabled = YES;
 	
     return YES;
 }

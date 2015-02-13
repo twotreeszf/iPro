@@ -22,7 +22,6 @@
 {
     [super viewDidLoad];
 
-    [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
     _service = [IPCaptureService new];
 
     [[NSNotificationCenter defaultCenter] addObserver:self

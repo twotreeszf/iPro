@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D48299C1A8C986D00E59457 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D4829991A8C986D00E59457 /* libjpeg.a */; };
+		7D48299D1A8C986D00E59457 /* libturbojpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D48299A1A8C986D00E59457 /* libturbojpeg.a */; };
 		7D53DE621A6FF0DC00DAD07B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D53DE611A6FF0DC00DAD07B /* libz.dylib */; };
 		7D53DE661A70A0C500DAD07B /* GCDWebServerFileStreamResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DE641A70A0C500DAD07B /* GCDWebServerFileStreamResponse.m */; };
 		7D53DE6A1A70A9DF00DAD07B /* TTImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DE691A70A9DF00DAD07B /* TTImageUtilities.m */; };
@@ -32,9 +34,6 @@
 		7DCA83451A80A51600935B12 /* IPServiceListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA83441A80A51600935B12 /* IPServiceListVC.m */; };
 		7DCA834C1A80AAEE00935B12 /* UIViewController+Visible.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA834A1A80AAEE00935B12 /* UIViewController+Visible.m */; };
 		7DCA834F1A80B37600935B12 /* NSNetService+ParseAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA834E1A80B37600935B12 /* NSNetService+ParseAddress.m */; };
-		7DDBADE01A7B83C500FE094C /* build-ios-libjpeg-turbo.sh in Resources */ = {isa = PBXBuildFile; fileRef = 7DDBADD61A7B83C500FE094C /* build-ios-libjpeg-turbo.sh */; };
-		7DDBADE11A7B83C500FE094C /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DDBADDE1A7B83C500FE094C /* libjpeg.a */; };
-		7DDBADE21A7B83C500FE094C /* libturbojpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DDBADDF1A7B83C500FE094C /* libturbojpeg.a */; };
 		7DDBADE81A7B856500FE094C /* UIImage+turboJPEG.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DDBADE71A7B856500FE094C /* UIImage+turboJPEG.m */; };
 		7DF725D71A6F8CA000696A26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF725D61A6F8CA000696A26 /* main.m */; };
 		7DF725DA1A6F8CA000696A26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF725D91A6F8CA000696A26 /* AppDelegate.m */; };
@@ -82,6 +81,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D4829931A8C986D00E59457 /* jconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jconfig.h; sourceTree = "<group>"; };
+		7D4829941A8C986D00E59457 /* jerror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jerror.h; sourceTree = "<group>"; };
+		7D4829951A8C986D00E59457 /* jmorecfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jmorecfg.h; sourceTree = "<group>"; };
+		7D4829961A8C986D00E59457 /* jpeglib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jpeglib.h; sourceTree = "<group>"; };
+		7D4829971A8C986D00E59457 /* turbojpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = turbojpeg.h; sourceTree = "<group>"; };
+		7D4829991A8C986D00E59457 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libjpeg.a; sourceTree = "<group>"; };
+		7D48299A1A8C986D00E59457 /* libturbojpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libturbojpeg.a; sourceTree = "<group>"; };
 		7D53DE601A6FE7C000DAD07B /* IPCaptureDataDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPCaptureDataDef.h; sourceTree = "<group>"; };
 		7D53DE611A6FF0DC00DAD07B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		7D53DE641A70A0C500DAD07B /* GCDWebServerFileStreamResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFileStreamResponse.m; sourceTree = "<group>"; };
@@ -133,14 +139,6 @@
 		7DCA834B1A80AAEE00935B12 /* UIViewController+Visible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Visible.h"; sourceTree = "<group>"; };
 		7DCA834D1A80B37600935B12 /* NSNetService+ParseAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNetService+ParseAddress.h"; sourceTree = "<group>"; };
 		7DCA834E1A80B37600935B12 /* NSNetService+ParseAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNetService+ParseAddress.m"; sourceTree = "<group>"; };
-		7DDBADD61A7B83C500FE094C /* build-ios-libjpeg-turbo.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "build-ios-libjpeg-turbo.sh"; sourceTree = "<group>"; };
-		7DDBADD81A7B83C500FE094C /* jconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jconfig.h; sourceTree = "<group>"; };
-		7DDBADD91A7B83C500FE094C /* jerror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jerror.h; sourceTree = "<group>"; };
-		7DDBADDA1A7B83C500FE094C /* jmorecfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jmorecfg.h; sourceTree = "<group>"; };
-		7DDBADDB1A7B83C500FE094C /* jpeglib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jpeglib.h; sourceTree = "<group>"; };
-		7DDBADDC1A7B83C500FE094C /* turbojpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = turbojpeg.h; sourceTree = "<group>"; };
-		7DDBADDE1A7B83C500FE094C /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libjpeg.a; sourceTree = "<group>"; };
-		7DDBADDF1A7B83C500FE094C /* libturbojpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libturbojpeg.a; sourceTree = "<group>"; };
 		7DDBADE61A7B856500FE094C /* UIImage+turboJPEG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+turboJPEG.h"; sourceTree = "<group>"; };
 		7DDBADE71A7B856500FE094C /* UIImage+turboJPEG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+turboJPEG.m"; sourceTree = "<group>"; };
 		7DF725D11A6F8CA000696A26 /* iPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -244,14 +242,44 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D53DE621A6FF0DC00DAD07B /* libz.dylib in Frameworks */,
-				7DDBADE21A7B83C500FE094C /* libturbojpeg.a in Frameworks */,
-				7DDBADE11A7B83C500FE094C /* libjpeg.a in Frameworks */,
+				7D48299D1A8C986D00E59457 /* libturbojpeg.a in Frameworks */,
+				7D48299C1A8C986D00E59457 /* libjpeg.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D4829901A8C986D00E59457 /* libjpeg-turbo */ = {
+			isa = PBXGroup;
+			children = (
+				7D4829921A8C986D00E59457 /* include */,
+				7D4829981A8C986D00E59457 /* lib */,
+			);
+			path = "libjpeg-turbo";
+			sourceTree = "<group>";
+		};
+		7D4829921A8C986D00E59457 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				7D4829931A8C986D00E59457 /* jconfig.h */,
+				7D4829941A8C986D00E59457 /* jerror.h */,
+				7D4829951A8C986D00E59457 /* jmorecfg.h */,
+				7D4829961A8C986D00E59457 /* jpeglib.h */,
+				7D4829971A8C986D00E59457 /* turbojpeg.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		7D4829981A8C986D00E59457 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				7D4829991A8C986D00E59457 /* libjpeg.a */,
+				7D48299A1A8C986D00E59457 /* libturbojpeg.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 		7D53DE711A724A7200DAD07B /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,37 +351,6 @@
 				7D53DEA41A75150800DAD07B /* GLModelView.m */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		7DDBADD51A7B83C500FE094C /* libjpeg-turbo */ = {
-			isa = PBXGroup;
-			children = (
-				7DDBADD61A7B83C500FE094C /* build-ios-libjpeg-turbo.sh */,
-				7DDBADD71A7B83C500FE094C /* include */,
-				7DDBADDD1A7B83C500FE094C /* lib */,
-			);
-			path = "libjpeg-turbo";
-			sourceTree = "<group>";
-		};
-		7DDBADD71A7B83C500FE094C /* include */ = {
-			isa = PBXGroup;
-			children = (
-				7DDBADD81A7B83C500FE094C /* jconfig.h */,
-				7DDBADD91A7B83C500FE094C /* jerror.h */,
-				7DDBADDA1A7B83C500FE094C /* jmorecfg.h */,
-				7DDBADDB1A7B83C500FE094C /* jpeglib.h */,
-				7DDBADDC1A7B83C500FE094C /* turbojpeg.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		7DDBADDD1A7B83C500FE094C /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				7DDBADDE1A7B83C500FE094C /* libjpeg.a */,
-				7DDBADDF1A7B83C500FE094C /* libturbojpeg.a */,
-			);
-			path = lib;
 			sourceTree = "<group>";
 		};
 		7DF725C81A6F8CA000696A26 = {
@@ -540,7 +537,7 @@
 		7DF726751A6FC68900696A26 /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
-				7DDBADD51A7B83C500FE094C /* libjpeg-turbo */,
+				7D4829901A8C986D00E59457 /* libjpeg-turbo */,
 				7D53DE911A75150800DAD07B /* GLView */,
 				7D53DE711A724A7200DAD07B /* AFNetworking */,
 				7DF726761A6FC68900696A26 /* GCDWebServer */,
@@ -653,6 +650,7 @@
 				TargetAttributes = {
 					7DF725D01A6F8CA000696A26 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = SXKSDVK696;
 					};
 				};
 			};
@@ -681,7 +679,6 @@
 			files = (
 				7DF725E01A6F8CA000696A26 /* Main.storyboard in Resources */,
 				7DF725E51A6F8CA000696A26 /* LaunchScreen.xib in Resources */,
-				7DDBADE01A7B83C500FE094C /* build-ios-libjpeg-turbo.sh in Resources */,
 				7DF725E21A6F8CA000696A26 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -871,6 +868,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iPro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -878,6 +876,7 @@
 					"$(PROJECT_DIR)/iPro/3rdParty/libjpeg-turbo/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -887,6 +886,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iPro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -894,6 +894,7 @@
 					"$(PROJECT_DIR)/iPro/3rdParty/libjpeg-turbo/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

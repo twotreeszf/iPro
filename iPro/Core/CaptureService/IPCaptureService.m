@@ -129,6 +129,8 @@ Exit0:
 	if (CS_Recording == _status)
 	{
 		[_capture stopRecording];
+		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:2.0]];
+		
 		_status = CS_Running;
 	}
 	
@@ -163,7 +165,6 @@ Exit0:
 		return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not in init state"];
 	else
 	{
-		[UIDevice currentDevice].batteryMonitoringEnabled = YES;
 		[_capture startRunning];
 		_status = CS_Running;
 		
@@ -177,7 +178,6 @@ Exit0:
 		return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not in running state"];
 	else
 	{
-		[UIDevice currentDevice].batteryMonitoringEnabled = NO;
 		[_capture stopRunning];
 		_status = CS_Init;
 		
@@ -262,7 +262,9 @@ Exit0:
 			if (!_lastFrame)
 			{
 				UIImage* frame = [TTImageUtilities aspectScaleImage:previewPixelBuffer KeepLongside:kPreviewFrameWidth];
-				_lastFrame = [frame tjEncode:0.8];
+				
+				//_lastFrame = [frame tjEncode:0.8]; // memory leak
+				_lastFrame = UIImageJPEGRepresentation(frame, 0.8);
 			}
 		}
 	}];
