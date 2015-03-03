@@ -17,7 +17,7 @@
 #import "TTImageUtilities.h"
 #import "UIImage+turboJPEG.h"
 
-#define kPreviewFrameWidth		960.0
+#define kPreviewFrameWidth		480.0
 
 @interface IPCaptureService() <RosyWriterCapturePipelineDelegate>
 {
@@ -263,7 +263,6 @@ Exit0:
 			{
 				UIImage* frame = [TTImageUtilities aspectScaleImage:previewPixelBuffer KeepLongside:kPreviewFrameWidth];
 				
-				//_lastFrame = [frame tjEncode:0.8]; // memory leak
 				_lastFrame = UIImageJPEGRepresentation(frame, 0.8);
 			}
 		}
