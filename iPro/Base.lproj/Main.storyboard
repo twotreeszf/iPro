@@ -57,7 +57,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="irK-jM-Phd" kind="show" id="Dbn-EF-Wtm"/>
+                                            <segue destination="irK-jM-Phd" kind="modal" id="4Cn-KX-iCF"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -244,13 +244,32 @@
                     <view key="view" contentMode="scaleToFill" id="iRf-RE-hM5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PC4-YO-RLo" userLabel="Slider" customClass="MBSliderView">
+                                <rect key="frame" x="0.0" y="528" width="320" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="QoB-OY-yEV"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="irK-jM-Phd" id="waN-hd-BfV"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PC4-YO-RLo" secondAttribute="trailing" id="C04-CY-X9F"/>
+                            <constraint firstItem="PC4-YO-RLo" firstAttribute="leading" secondItem="iRf-RE-hM5" secondAttribute="leading" id="FRA-5o-ZGt"/>
+                            <constraint firstItem="Z49-Rq-AH2" firstAttribute="top" secondItem="PC4-YO-RLo" secondAttribute="bottom" id="TSC-IC-eVZ"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="slider" destination="PC4-YO-RLo" id="dbc-bt-j7o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Yw-7k-Zm6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1165" y="866"/>
+            <point key="canvasLocation" x="1094" y="862"/>
         </scene>
     </scenes>
 </document>

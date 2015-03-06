@@ -8,11 +8,14 @@
 
 #import "IPServiceHostVC.h"
 #import "IPCaptureService.h"
+#import "MBSliderView.h"
 
-@interface IPServiceHostVC ()
+@interface IPServiceHostVC () <MBSliderViewDelegate>
 {
     IPCaptureService* _service;
 }
+
+@property (weak, nonatomic) IBOutlet MBSliderView *slider;
 
 @end
 
@@ -28,6 +31,8 @@
                                              selector:@selector(deviceOrientationDidChange)
                                                  name:UIDeviceOrientationDidChangeNotification
                                                object:[UIDevice currentDevice]];
+	
+	self.slider.text = @"Slide to unlock";
 }
 
 - (void)dealloc
@@ -52,6 +57,11 @@
     // Update recording orientation if device changes to portrait or landscape orientation (but not face up/down)
     if (UIDeviceOrientationIsPortrait(deviceOrientation) || UIDeviceOrientationIsLandscape(deviceOrientation))
 		_service.recordingOrientation = (AVCaptureVideoOrientation)deviceOrientation;
+}
+
+- (void) sliderDidSlide:(MBSliderView *)slideView
+{
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

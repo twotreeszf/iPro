@@ -75,6 +75,8 @@
 		7DF726A11A6FC68900696A26 /* GCDWebServerFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF726931A6FC68900696A26 /* GCDWebServerFileResponse.m */; };
 		7DF726A21A6FC68900696A26 /* GCDWebServerStreamedResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF726951A6FC68900696A26 /* GCDWebServerStreamedResponse.m */; };
 		7DF726A61A6FC6C400696A26 /* IPCaptureService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF726A51A6FC6C400696A26 /* IPCaptureService.m */; };
+		7DFA72921AA9542F00488409 /* MBSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFA72911AA9542F00488409 /* MBSliderView.m */; };
+		7DFA72951AA9920B00488409 /* IPLockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFA72941AA9920B00488409 /* IPLockVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -222,6 +224,10 @@
 		7DF726951A6FC68900696A26 /* GCDWebServerStreamedResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerStreamedResponse.m; sourceTree = "<group>"; };
 		7DF726A41A6FC6C400696A26 /* IPCaptureService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPCaptureService.h; sourceTree = "<group>"; };
 		7DF726A51A6FC6C400696A26 /* IPCaptureService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPCaptureService.m; sourceTree = "<group>"; };
+		7DFA72901AA9542F00488409 /* MBSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBSliderView.h; sourceTree = "<group>"; };
+		7DFA72911AA9542F00488409 /* MBSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBSliderView.m; sourceTree = "<group>"; };
+		7DFA72931AA9920B00488409 /* IPLockVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPLockVC.h; sourceTree = "<group>"; };
+		7DFA72941AA9920B00488409 /* IPLockVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPLockVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -363,6 +369,8 @@
 				7DF726531A6F948F00696A26 /* IPRemoteControlVC.m */,
 				7DF726551A6F94AA00696A26 /* IPServiceHostVC.h */,
 				7DF726561A6F94AA00696A26 /* IPServiceHostVC.m */,
+				7DFA72931AA9920B00488409 /* IPLockVC.h */,
+				7DFA72941AA9920B00488409 /* IPLockVC.m */,
 				7DCA83401A80A3B800935B12 /* IPServiceListCell.h */,
 				7DCA83411A80A3B800935B12 /* IPServiceListCell.m */,
 				7DCA83431A80A51600935B12 /* IPServiceListVC.h */,
@@ -491,6 +499,7 @@
 		7DF726751A6FC68900696A26 /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				7DFA728F1AA9542F00488409 /* MBSliderView */,
 				7D53DE911A75150800DAD07B /* GLView */,
 				7D53DE711A724A7200DAD07B /* AFNetworking */,
 				7DF726761A6FC68900696A26 /* GCDWebServer */,
@@ -569,6 +578,15 @@
 				7D53DE691A70A9DF00DAD07B /* TTImageUtilities.m */,
 			);
 			path = CaptureService;
+			sourceTree = "<group>";
+		};
+		7DFA728F1AA9542F00488409 /* MBSliderView */ = {
+			isa = PBXGroup;
+			children = (
+				7DFA72901AA9542F00488409 /* MBSliderView.h */,
+				7DFA72911AA9542F00488409 /* MBSliderView.m */,
+			);
+			path = MBSliderView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -678,6 +696,7 @@
 				7D53DEA51A75150800DAD07B /* GLUtils.m in Sources */,
 				7DF7269F1A6FC68900696A26 /* GCDWebServerDataResponse.m in Sources */,
 				7D53DE871A724A7200DAD07B /* AFHTTPSessionManager.m in Sources */,
+				7DFA72951AA9920B00488409 /* IPLockVC.m in Sources */,
 				7DCA83421A80A3B800935B12 /* IPServiceListCell.m in Sources */,
 				7DF7263C1A6F8E2B00696A26 /* DDASLLogCapture.m in Sources */,
 				7D53DE8C1A724A7200DAD07B /* AFURLResponseSerialization.m in Sources */,
@@ -706,6 +725,7 @@
 				7DF7263B1A6F8E2B00696A26 /* DDAbstractDatabaseLogger.m in Sources */,
 				7DF726441A6F8E2B00696A26 /* NSThread+SequenceNumber.m in Sources */,
 				7D53DEA91A75150800DAD07B /* GLImageView.m in Sources */,
+				7DFA72921AA9542F00488409 /* MBSliderView.m in Sources */,
 				7D53DEAA1A75150800DAD07B /* GLLight.m in Sources */,
 				7DF726421A6F8E2B00696A26 /* DDDispatchQueueLogFormatter.m in Sources */,
 				7DF7269C1A6FC68900696A26 /* GCDWebServerFileRequest.m in Sources */,
