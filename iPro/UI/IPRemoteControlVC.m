@@ -90,8 +90,11 @@
 {
 	[_jsonRequest GET:kAPIStartCapturing parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
 	 {
-		 _status = CS_Running;
-		 [self dealStatus];
+		 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
+		{
+			_status = CS_Running;
+			[self dealStatus];
+		});
 	 }
 	failure:^(NSURLSessionDataTask *task, NSError *error)
 	 {
@@ -138,7 +141,6 @@
 	[_jsonRequest GET:kAPIStartRecording parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
 	 {
 		 _status = CS_Recording;
-		 [self dealStatus];
 	 }
 	failure:^(NSURLSessionDataTask *task, NSError *error)
 	 {
@@ -152,7 +154,6 @@
 	[_jsonRequest GET:kAPIStopRecording parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
 	 {
 		 _status = CS_Running;
-		 [self dealStatus];
 	 }
 	failure:^(NSURLSessionDataTask *task, NSError *error)
 	 {

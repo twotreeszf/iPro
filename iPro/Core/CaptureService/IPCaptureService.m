@@ -15,7 +15,6 @@
 #import "GCDWebServerFileStreamResponse.h"
 #import "GCDWebServerFileResponse.h"
 #import "TTImageUtilities.h"
-#import "UIImage+turboJPEG.h"
 
 #define kPreviewFrameWidth		480.0
 
@@ -263,7 +262,7 @@ Exit0:
 			{
 				UIImage* frame = [TTImageUtilities aspectScaleImage:previewPixelBuffer KeepLongside:kPreviewFrameWidth];
 				
-				_lastFrame = UIImageJPEGRepresentation(frame, 0.8);
+				_lastFrame = UIImageJPEGRepresentation(frame, 0.9);
 			}
 		}
 	}];
