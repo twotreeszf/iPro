@@ -20,4 +20,6 @@
 + (UIImage*)vImageAspectScaleImage:(CVPixelBufferRef)sourceImage KeepLongside:(CGFloat)longside HighQuality:(BOOL)highQuality;
 + (UIImage*)vImageScaleImage:(CVPixelBufferRef)sourceImage WithSize:(CGSize)destSize HighQuality:(BOOL)highQuality;
 
++ (CGImageRef)createRotatedImage:(CGImageRef)original degrees:(float)degrees;
+
 @end

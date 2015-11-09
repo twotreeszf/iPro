@@ -22,6 +22,7 @@
 @property (nonatomic, assign) UIColor *labelColor;
 @property (nonatomic) IBOutlet id<MBSliderViewDelegate> delegate;
 @property (nonatomic) BOOL enabled;
+@property (nonatomic, assign) BOOL animated;
 
 - (void) setThumbColor:(UIColor *)color;
 

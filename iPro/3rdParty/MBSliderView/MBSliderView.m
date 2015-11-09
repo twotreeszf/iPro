@@ -63,14 +63,12 @@ static const CGFloat gradientDimAlpha = 0.5;
         _label = [[MBSliderLabel alloc] initWithFrame:CGRectZero];
         _label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         _label.textColor = [UIColor whiteColor];
-        _label.textAlignment = UITextAlignmentCenter;
+        _label.textAlignment = NSTextAlignmentCenter;
         _label.backgroundColor = [UIColor clearColor];
         _label.font = [UIFont systemFontOfSize:24];
         _label.text = @"Slide";
         [self addSubview:_label];
-        _label.animated = YES;
-        
-        
+        _label.animated = self.animated;
         
         _slider = [[UISlider alloc] initWithFrame:CGRectZero];
         _slider.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -136,7 +134,7 @@ static const CGFloat gradientDimAlpha = 0.5;
 		_label.alpha = 1.0;
 		_sliding = NO;
 	}
-    [_label setAnimated:enabled];
+    [_label setAnimated:enabled && self.animated];
 }
 
 // Implement the "text" property
@@ -169,7 +167,7 @@ static const CGFloat gradientDimAlpha = 0.5;
 		
 		[_slider setValue:0.0 animated: YES];
         _label.alpha = 1.0;
-        [_label setAnimated:YES];
+        [_label setAnimated:self.animated];
 	}
 }
 
@@ -292,17 +290,6 @@ static const CGFloat gradientDimAlpha = 0.5;
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
-
 
 @interface MBSliderLabel()
 

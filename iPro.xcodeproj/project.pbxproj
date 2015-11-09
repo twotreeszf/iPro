@@ -19,14 +19,6 @@
 		7D53DE8B1A724A7200DAD07B /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DE801A724A7200DAD07B /* AFURLRequestSerialization.m */; };
 		7D53DE8C1A724A7200DAD07B /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DE821A724A7200DAD07B /* AFURLResponseSerialization.m */; };
 		7D53DE8D1A724A7200DAD07B /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DE841A724A7200DAD07B /* AFURLSessionManager.m */; };
-		7D53DEA51A75150800DAD07B /* GLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DE941A75150800DAD07B /* GLUtils.m */; };
-		7D53DEA61A75150800DAD07B /* GLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DE961A75150800DAD07B /* GLView.m */; };
-		7D53DEA71A75150800DAD07B /* GLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DE991A75150800DAD07B /* GLImage.m */; };
-		7D53DEA81A75150800DAD07B /* GLImageMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DE9B1A75150800DAD07B /* GLImageMap.m */; };
-		7D53DEA91A75150800DAD07B /* GLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DE9D1A75150800DAD07B /* GLImageView.m */; };
-		7D53DEAA1A75150800DAD07B /* GLLight.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DEA01A75150800DAD07B /* GLLight.m */; };
-		7D53DEAB1A75150800DAD07B /* GLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DEA21A75150800DAD07B /* GLModel.m */; };
-		7D53DEAC1A75150800DAD07B /* GLModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DEA41A75150800DAD07B /* GLModelView.m */; };
 		7DCA833C1A7F86DC00935B12 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA833A1A7F86DC00935B12 /* UIImage+Resize.m */; };
 		7DCA83421A80A3B800935B12 /* IPServiceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA83411A80A3B800935B12 /* IPServiceListCell.m */; };
 		7DCA83451A80A51600935B12 /* IPServiceListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA83441A80A51600935B12 /* IPServiceListVC.m */; };
@@ -36,7 +28,6 @@
 		7DF725DA1A6F8CA000696A26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF725D91A6F8CA000696A26 /* AppDelegate.m */; };
 		7DF725E01A6F8CA000696A26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF725DE1A6F8CA000696A26 /* Main.storyboard */; };
 		7DF725E21A6F8CA000696A26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DF725E11A6F8CA000696A26 /* Images.xcassets */; };
-		7DF725E51A6F8CA000696A26 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DF725E31A6F8CA000696A26 /* LaunchScreen.xib */; };
 		7DF726011A6F8DD400696A26 /* MovieRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF725FE1A6F8DD400696A26 /* MovieRecorder.m */; };
 		7DF726021A6F8DD400696A26 /* RosyWriterCapturePipeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF726001A6F8DD400696A26 /* RosyWriterCapturePipeline.m */; };
 		7DF7263A1A6F8E2B00696A26 /* AutoLocalize.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF726061A6F8E2B00696A26 /* AutoLocalize.m */; };
@@ -105,22 +96,6 @@
 		7D53DE821A724A7200DAD07B /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		7D53DE831A724A7200DAD07B /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		7D53DE841A724A7200DAD07B /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		7D53DE931A75150800DAD07B /* GLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLUtils.h; sourceTree = "<group>"; };
-		7D53DE941A75150800DAD07B /* GLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLUtils.m; sourceTree = "<group>"; };
-		7D53DE951A75150800DAD07B /* GLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLView.h; sourceTree = "<group>"; };
-		7D53DE961A75150800DAD07B /* GLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLView.m; sourceTree = "<group>"; };
-		7D53DE981A75150800DAD07B /* GLImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLImage.h; sourceTree = "<group>"; };
-		7D53DE991A75150800DAD07B /* GLImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLImage.m; sourceTree = "<group>"; };
-		7D53DE9A1A75150800DAD07B /* GLImageMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLImageMap.h; sourceTree = "<group>"; };
-		7D53DE9B1A75150800DAD07B /* GLImageMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLImageMap.m; sourceTree = "<group>"; };
-		7D53DE9C1A75150800DAD07B /* GLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLImageView.h; sourceTree = "<group>"; };
-		7D53DE9D1A75150800DAD07B /* GLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLImageView.m; sourceTree = "<group>"; };
-		7D53DE9F1A75150800DAD07B /* GLLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLLight.h; sourceTree = "<group>"; };
-		7D53DEA01A75150800DAD07B /* GLLight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLLight.m; sourceTree = "<group>"; };
-		7D53DEA11A75150800DAD07B /* GLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLModel.h; sourceTree = "<group>"; };
-		7D53DEA21A75150800DAD07B /* GLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLModel.m; sourceTree = "<group>"; };
-		7D53DEA31A75150800DAD07B /* GLModelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLModelView.h; sourceTree = "<group>"; };
-		7D53DEA41A75150800DAD07B /* GLModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLModelView.m; sourceTree = "<group>"; };
 		7DCA833A1A7F86DC00935B12 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		7DCA833B1A7F86DC00935B12 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		7DCA83401A80A3B800935B12 /* IPServiceListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPServiceListCell.h; sourceTree = "<group>"; };
@@ -138,7 +113,6 @@
 		7DF725D91A6F8CA000696A26 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7DF725DF1A6F8CA000696A26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7DF725E11A6F8CA000696A26 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		7DF725E41A6F8CA000696A26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		7DF725FD1A6F8DD400696A26 /* MovieRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieRecorder.h; sourceTree = "<group>"; };
 		7DF725FE1A6F8DD400696A26 /* MovieRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieRecorder.m; sourceTree = "<group>"; };
 		7DF725FF1A6F8DD400696A26 /* RosyWriterCapturePipeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosyWriterCapturePipeline.h; sourceTree = "<group>"; };
@@ -268,53 +242,6 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
-		7D53DE911A75150800DAD07B /* GLView */ = {
-			isa = PBXGroup;
-			children = (
-				7D53DE921A75150800DAD07B /* Core */,
-				7D53DE971A75150800DAD07B /* Images */,
-				7D53DE9E1A75150800DAD07B /* Models */,
-			);
-			path = GLView;
-			sourceTree = "<group>";
-		};
-		7D53DE921A75150800DAD07B /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				7D53DE931A75150800DAD07B /* GLUtils.h */,
-				7D53DE941A75150800DAD07B /* GLUtils.m */,
-				7D53DE951A75150800DAD07B /* GLView.h */,
-				7D53DE961A75150800DAD07B /* GLView.m */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		7D53DE971A75150800DAD07B /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				7D53DE981A75150800DAD07B /* GLImage.h */,
-				7D53DE991A75150800DAD07B /* GLImage.m */,
-				7D53DE9A1A75150800DAD07B /* GLImageMap.h */,
-				7D53DE9B1A75150800DAD07B /* GLImageMap.m */,
-				7D53DE9C1A75150800DAD07B /* GLImageView.h */,
-				7D53DE9D1A75150800DAD07B /* GLImageView.m */,
-			);
-			path = Images;
-			sourceTree = "<group>";
-		};
-		7D53DE9E1A75150800DAD07B /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				7D53DE9F1A75150800DAD07B /* GLLight.h */,
-				7D53DEA01A75150800DAD07B /* GLLight.m */,
-				7D53DEA11A75150800DAD07B /* GLModel.h */,
-				7D53DEA21A75150800DAD07B /* GLModel.m */,
-				7D53DEA31A75150800DAD07B /* GLModelView.h */,
-				7D53DEA41A75150800DAD07B /* GLModelView.m */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		7DF725C81A6F8CA000696A26 = {
 			isa = PBXGroup;
 			children = (
@@ -344,7 +271,6 @@
 				7DF725D91A6F8CA000696A26 /* AppDelegate.m */,
 				7DF725DE1A6F8CA000696A26 /* Main.storyboard */,
 				7DF725E11A6F8CA000696A26 /* Images.xcassets */,
-				7DF725E31A6F8CA000696A26 /* LaunchScreen.xib */,
 				7DF725D41A6F8CA000696A26 /* Supporting Files */,
 			);
 			path = iPro;
@@ -500,7 +426,6 @@
 			isa = PBXGroup;
 			children = (
 				7DFA728F1AA9542F00488409 /* MBSliderView */,
-				7D53DE911A75150800DAD07B /* GLView */,
 				7D53DE711A724A7200DAD07B /* AFNetworking */,
 				7DF726761A6FC68900696A26 /* GCDWebServer */,
 			);
@@ -599,7 +524,6 @@
 				7DF725CD1A6F8CA000696A26 /* Sources */,
 				7DF725CE1A6F8CA000696A26 /* Frameworks */,
 				7DF725CF1A6F8CA000696A26 /* Resources */,
-				50524F424C454D533F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -617,12 +541,12 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = IP;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = twotrees;
 				TargetAttributes = {
 					7DF725D01A6F8CA000696A26 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = EQ77XF98J8;
+						DevelopmentTeam = 8PUEFH8BBB;
 					};
 				};
 			};
@@ -650,28 +574,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DF725E01A6F8CA000696A26 /* Main.storyboard in Resources */,
-				7DF725E51A6F8CA000696A26 /* LaunchScreen.xib in Resources */,
 				7DF725E21A6F8CA000696A26 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		50524F424C454D533F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export CODESIGN_ALLOCATE=/Library/JailCoder/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]; then\n/Library/JailCoder/Entitlements/Entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7DF725CD1A6F8CA000696A26 /* Sources */ = {
@@ -681,7 +588,6 @@
 				7D53DE8D1A724A7200DAD07B /* AFURLSessionManager.m in Sources */,
 				7DF726491A6F8E2B00696A26 /* NSMutableArray+Stack.m in Sources */,
 				7DF726431A6F8E2B00696A26 /* DDMultiFormatter.m in Sources */,
-				7D53DEA61A75150800DAD07B /* GLView.m in Sources */,
 				7DF726011A6F8DD400696A26 /* MovieRecorder.m in Sources */,
 				7DF726A61A6FC6C400696A26 /* IPCaptureService.m in Sources */,
 				7DF7263A1A6F8E2B00696A26 /* AutoLocalize.m in Sources */,
@@ -691,9 +597,7 @@
 				7D53DE6A1A70A9DF00DAD07B /* TTImageUtilities.m in Sources */,
 				7DCA834C1A80AAEE00935B12 /* UIViewController+Visible.m in Sources */,
 				7DF7269E1A6FC68900696A26 /* GCDWebServerURLEncodedFormRequest.m in Sources */,
-				7D53DEAB1A75150800DAD07B /* GLModel.m in Sources */,
 				7DF7269D1A6FC68900696A26 /* GCDWebServerMultiPartFormRequest.m in Sources */,
-				7D53DEA51A75150800DAD07B /* GLUtils.m in Sources */,
 				7DF7269F1A6FC68900696A26 /* GCDWebServerDataResponse.m in Sources */,
 				7D53DE871A724A7200DAD07B /* AFHTTPSessionManager.m in Sources */,
 				7DFA72951AA9920B00488409 /* IPLockVC.m in Sources */,
@@ -706,10 +610,8 @@
 				7D53DE881A724A7200DAD07B /* AFNetworkReachabilityManager.m in Sources */,
 				7DF726571A6F94AA00696A26 /* IPServiceHostVC.m in Sources */,
 				7DF726461A6F8E2B00696A26 /* KPLogFormatter.m in Sources */,
-				7D53DEA71A75150800DAD07B /* GLImage.m in Sources */,
 				7DF726471A6F8E2B00696A26 /* MBProgressHUD.m in Sources */,
 				7DF726541A6F948F00696A26 /* IPRemoteControlVC.m in Sources */,
-				7D53DEA81A75150800DAD07B /* GLImageMap.m in Sources */,
 				7D53DE851A724A7200DAD07B /* AFHTTPRequestOperation.m in Sources */,
 				7DF7263F1A6F8E2B00696A26 /* DDLog.m in Sources */,
 				7DF726411A6F8E2B00696A26 /* DDContextFilterLogFormatter.m in Sources */,
@@ -724,9 +626,7 @@
 				7DF7264A1A6F8E2B00696A26 /* NSOperationQueue+GlobalQueue.m in Sources */,
 				7DF7263B1A6F8E2B00696A26 /* DDAbstractDatabaseLogger.m in Sources */,
 				7DF726441A6F8E2B00696A26 /* NSThread+SequenceNumber.m in Sources */,
-				7D53DEA91A75150800DAD07B /* GLImageView.m in Sources */,
 				7DFA72921AA9542F00488409 /* MBSliderView.m in Sources */,
-				7D53DEAA1A75150800DAD07B /* GLLight.m in Sources */,
 				7DF726421A6F8E2B00696A26 /* DDDispatchQueueLogFormatter.m in Sources */,
 				7DF7269C1A6FC68900696A26 /* GCDWebServerFileRequest.m in Sources */,
 				7DF725DA1A6F8CA000696A26 /* AppDelegate.m in Sources */,
@@ -742,7 +642,6 @@
 				7DF7264D1A6F8E2B00696A26 /* UIView+UserData.m in Sources */,
 				7DF726A11A6FC68900696A26 /* GCDWebServerFileResponse.m in Sources */,
 				7DF725D71A6F8CA000696A26 /* main.m in Sources */,
-				7D53DEAC1A75150800DAD07B /* GLModelView.m in Sources */,
 				7DF7263E1A6F8E2B00696A26 /* DDFileLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -756,14 +655,6 @@
 				7DF725DF1A6F8CA000696A26 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		7DF725E31A6F8CA000696A26 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7DF725E41A6F8CA000696A26 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -789,6 +680,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -805,7 +697,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -843,7 +735,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -856,13 +748,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = iPro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iPro/3rdParty/libjpeg-turbo/lib",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.twotrees.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -873,14 +766,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iPro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iPro/3rdParty/libjpeg-turbo/lib",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.twotrees.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

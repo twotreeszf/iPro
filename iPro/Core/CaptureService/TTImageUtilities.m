@@ -228,4 +228,53 @@ Exit0:
     return destImage;
 }
 
++ (CGImageRef)createRotatedImage:(CGImageRef)original degrees:(float)degrees CF_RETURNS_RETAINED
+{
+    if (degrees == 0.0f) {
+        CGImageRetain(original);
+        return original;
+    } else {
+        double radians = degrees * M_PI / 180;
+        
+#if TARGET_OS_EMBEDDED || TARGET_IPHONE_SIMULATOR
+        radians = -1 * radians;
+#endif
+        
+        size_t _width = CGImageGetWidth(original);
+        size_t _height = CGImageGetHeight(original);
+        
+        CGRect imgRect = CGRectMake(0, 0, _width, _height);
+        CGAffineTransform __transform = CGAffineTransformMakeRotation(radians);
+        CGRect rotatedRect = CGRectApplyAffineTransform(imgRect, __transform);
+        
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+        CGContextRef context = CGBitmapContextCreate(NULL,
+                                                     rotatedRect.size.width,
+                                                     rotatedRect.size.height,
+                                                     CGImageGetBitsPerComponent(original),
+                                                     0,
+                                                     colorSpace,
+                                                     kCGBitmapAlphaInfoMask & kCGImageAlphaPremultipliedFirst);
+        CGContextSetAllowsAntialiasing(context, FALSE);
+        CGContextSetInterpolationQuality(context, kCGInterpolationNone);
+        CGColorSpaceRelease(colorSpace);
+        
+        CGContextTranslateCTM(context,
+                              +(rotatedRect.size.width/2),
+                              +(rotatedRect.size.height/2));
+        CGContextRotateCTM(context, radians);
+        
+        CGContextDrawImage(context, CGRectMake(-imgRect.size.width/2,
+                                               -imgRect.size.height/2,
+                                               imgRect.size.width,
+                                               imgRect.size.height),
+                           original);
+        
+        CGImageRef rotatedImage = CGBitmapContextCreateImage(context);
+        CFRelease(context);
+        
+        return rotatedImage;
+    }
+}
+
 @end

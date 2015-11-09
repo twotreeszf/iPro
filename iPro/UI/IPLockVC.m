@@ -21,6 +21,7 @@
     [super viewDidLoad];
 	
 	self.slider.text = @"Slide to unlock";
+    self.slider.animated = NO;
 }
 
 - (void) sliderDidSlide:(MBSliderView *)slideView

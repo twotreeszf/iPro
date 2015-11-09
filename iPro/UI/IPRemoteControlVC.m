@@ -9,12 +9,11 @@
 #import "IPRemoteControlVC.h"
 #import "AFNetworking.h"
 #import "IPCaptureDataDef.h"
-#import "GLImage.h"
-#import "GLImageView.h"
+#import "TTImageUtilities.h"
 
 @interface IPRemoteControlVC () <NSNetServiceBrowserDelegate>
 {
-	__weak IBOutlet GLImageView*	_previewImage;
+	__weak IBOutlet UIImageView*	_previewImage;
 	__weak IBOutlet UILabel*		_batteryLevelLabel;
 	__weak IBOutlet UILabel*		_fpsLabel;
 	__weak IBOutlet UIButton*		_recordButton;
@@ -27,6 +26,7 @@
 	NSTimeInterval				_lastFrameTime;
 	int							_frameCount;
 	volatile BOOL				_shoudQuit;
+    float                       _rotateDegree;
 }
 
 @end
@@ -36,8 +36,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+    	
 	_status = CS_Init;
+    _rotateDegree = 0.0;
 	
 	NSURL* URL = [NSURL URLWithString:_serverURL];
 	_jsonRequest = [[AFHTTPSessionManager alloc] initWithBaseURL:URL];
@@ -67,6 +68,11 @@
 	{
 		[self stopRecording];
 	}
+}
+
+- (IBAction)onRotate:(UISegmentedControl *)sender
+{
+    _rotateDegree = 90.0 * [sender selectedSegmentIndex];
 }
 
 - (void)refreshStatus
@@ -122,7 +128,14 @@
 	[_dataReqeust GET:kAPIGetPreviewFrame parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
 	 {
 		 UIImage* frame = (UIImage*)responseObject;
-		 _previewImage.image = [GLImage imageWithUIImage:frame];
+         
+         if (_rotateDegree != 0.0)
+         {
+             CGImageRef rotatedImage = [TTImageUtilities createRotatedImage:frame.CGImage degrees:_rotateDegree];
+             frame = [UIImage imageWithCGImage:rotatedImage];
+         }
+         
+         _previewImage.image = frame;
 		 
 		 [self dealStatus];
 	 }
@@ -170,26 +183,26 @@
     case CS_Init:
     case CS_Lost:
         _recordButton.enabled = NO;
-        _recordButton.titleLabel.textColor = [UIColor lightGrayColor];
-		_batteryLevelLabel.text = @"[////]:?%";
-		_fpsLabel.text = @"? FPS";
+        [_recordButton setImage:[UIImage imageNamed:@"CamGrey"] forState:UIControlStateNormal];
+		_batteryLevelLabel.text = @"?";
+		_fpsLabel.text = @"?";
         break;
     case CS_Running:
 	case CS_Recording:
 		if (CS_Running == _status)
-			_recordButton.titleLabel.textColor = [UIColor blueColor];
+			[_recordButton setImage:[UIImage imageNamed:@"CamBlue"] forState:UIControlStateNormal];
 		else
-			_recordButton.titleLabel.textColor = [UIColor redColor];
+			[_recordButton setImage:[UIImage imageNamed:@"CamRed"] forState:UIControlStateNormal];
 
         _recordButton.enabled = YES;
-		_batteryLevelLabel.text = [NSString stringWithFormat:@"[////]:%02d%%", _batteryLevel];
+		_batteryLevelLabel.text = [NSString stringWithFormat:@"%02d", _batteryLevel];
 			
 		NSTimeInterval timeNow = [[NSDate date] timeIntervalSince1970];
 		if (_lastFrameTime > 0.0)
 		{
 			NSTimeInterval frameSpan = timeNow - _lastFrameTime;
 			int fps = 1.0 / frameSpan;
-			_fpsLabel.text = [NSString stringWithFormat:@"%d FPS", fps];
+			_fpsLabel.text = [NSString stringWithFormat:@"%d", fps];
 		}
 		_lastFrameTime = timeNow;
         break;
