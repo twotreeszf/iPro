@@ -11,6 +11,8 @@
 #import "IPCaptureDataDef.h"
 #import "TTImageUtilities.h"
 
+#define kRequestTimeout 2.0
+
 @interface IPRemoteControlVC () <NSNetServiceBrowserDelegate>
 {
 	__weak IBOutlet UIImageView*	_previewImage;
@@ -42,8 +44,10 @@
 	
 	NSURL* URL = [NSURL URLWithString:_serverURL];
 	_jsonRequest = [[AFHTTPSessionManager alloc] initWithBaseURL:URL];
+    [_jsonRequest.requestSerializer setTimeoutInterval:kRequestTimeout];
 	
 	_dataReqeust = [[AFHTTPSessionManager alloc] initWithBaseURL:URL];
+    [_dataReqeust.requestSerializer setTimeoutInterval:kRequestTimeout];
 	_dataReqeust.responseSerializer = [AFImageResponseSerializer new];
 }
 
@@ -141,11 +145,10 @@
 	 }
 	failure:^(NSURLSessionDataTask *task, NSError *error)
 	 {
-		 if (error.code != NSURLErrorBadServerResponse)
-		 {
-			 _status = CS_Lost;
-			 [self dealStatus];			 
-		 }
+         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
+         {
+             [self dealStatus];
+         });
 	 }];
 }
 
@@ -241,16 +244,9 @@
     }
     else
     {
-		if (CS_Recording == _status)
+        if (CS_Running == _status)
 		{
-			[self stopRecording];
-		}
-		else if (CS_Running == _status)
-		{
-			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
-		   {
 			   [self stopCapturing];
-		   });
 		}
     }
 }

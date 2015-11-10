@@ -286,7 +286,7 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
     {
         NSLog(@"videoDevice lockForConfiguration returned error %@", error);
     }
-
+    
     // Get the recommended compression settings after configuring the session/device.
     _audioCompressionSettings = [[audioOut recommendedAudioSettingsForAssetWriterWithOutputFileType:AVFileTypeQuickTimeMovie] copy];
     _videoCompressionSettings = [[videoOut recommendedVideoSettingsForAssetWriterWithOutputFileType:AVFileTypeQuickTimeMovie] copy];
