@@ -16,7 +16,8 @@
 #import "GCDWebServerFileResponse.h"
 #import "TTImageUtilities.h"
 
-#define kPreviewFrameWidth		480.0
+#define kPreviewFrameWidth		240.0
+#define kMaxPreviewFrameCount   6
 
 @interface IPCaptureService() <RosyWriterCapturePipelineDelegate>
 {
@@ -24,7 +25,7 @@
 	RosyWriterCapturePipeline*	_capture;
 	
 	NSOperationQueue*			_optQueue;
-	NSData*						_lastFrame;
+    NSMutableArray*             _frameQueue;
 	IPCaptrueStatus				_status;
 }
 
@@ -35,6 +36,8 @@
 - (instancetype)init
 {
 	self = [super init];
+    
+    _frameQueue = [NSMutableArray new];
 	
 	// web service
 	_webServer = [GCDWebServer new];
@@ -92,7 +95,7 @@
 	_capture = nil;
 	_status = CS_Init;
 	_webServer = nil;
-	_lastFrame = nil;
+    _frameQueue = nil;
 }
 
 - (void)setRecordingOrientation:(AVCaptureVideoOrientation)recordingOrientation
@@ -141,7 +144,7 @@ Exit0:
 	
 	[_optQueue cancelAllOperations];
 	[_optQueue waitUntilAllOperationsAreFinished];
-	_lastFrame = nil;
+	_frameQueue = nil;
 	
 	[_webServer stop];
 }
@@ -186,18 +189,17 @@ Exit0:
 
 - (GCDWebServerResponse*)getPreviewFrame:(GCDWebServerRequest*)request
 {
-	NSData* lastFrame;
+	NSData* frame;
 	@synchronized(self)
 	{
-		lastFrame = _lastFrame;
-		_lastFrame = nil;
+        frame = [_frameQueue dequeue];
 	}
 	
-	if (!lastFrame)
+	if (!frame)
 		return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_NotFound message:@"Preivew frame not ready"];
 	else
 	{
-		return [GCDWebServerDataResponse responseWithData:lastFrame contentType:@"image/jpeg"];
+		return [GCDWebServerDataResponse responseWithData:frame contentType:@"image/jpeg"];
 	}
 }
 
@@ -240,12 +242,9 @@ Exit0:
 
 - (void)capturePipeline:(RosyWriterCapturePipeline*)capturePipeline previewPixelBufferReadyForDisplay:(CVPixelBufferRef)previewPixelBuffer
 {
-	if (_optQueue.operationCount)
-		return;
-	
 	@synchronized(self)
 	{
-		if (_lastFrame)
+		if ((_frameQueue.count + _optQueue.operationCount) >= kMaxPreviewFrameCount)
 			return;
 	}
 	
@@ -255,16 +254,14 @@ Exit0:
 	{
 		TTEasyReleasePool* pool = [TTEasyReleasePool new];
 		[pool autoreleaseCFOBJ:previewPixelBuffer];
-		
-		@synchronized(self)
-		{
-			if (!_lastFrame)
-			{
-				UIImage* frame = [TTImageUtilities aspectScaleImage:previewPixelBuffer KeepLongside:kPreviewFrameWidth];
-				
-				_lastFrame = UIImageJPEGRepresentation(frame, 0.9);
-			}
-		}
+        
+        UIImage* frame = [TTImageUtilities aspectScaleImage:previewPixelBuffer KeepLongside:kPreviewFrameWidth];
+        NSData* data = UIImageJPEGRepresentation(frame, 0.9);
+        
+        @synchronized(self)
+        {
+            [_frameQueue enqueue:data];
+        }
 	}];
 }
 
