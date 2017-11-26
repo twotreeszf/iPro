@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D53DE621A6FF0DC00DAD07B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D53DE611A6FF0DC00DAD07B /* libz.dylib */; };
 		7D53DE661A70A0C500DAD07B /* GCDWebServerFileStreamResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DE641A70A0C500DAD07B /* GCDWebServerFileStreamResponse.m */; };
 		7D53DE6A1A70A9DF00DAD07B /* TTImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DE691A70A9DF00DAD07B /* TTImageUtilities.m */; };
 		7D53DE851A724A7200DAD07B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DE731A724A7200DAD07B /* AFHTTPRequestOperation.m */; };
@@ -72,7 +71,6 @@
 
 /* Begin PBXFileReference section */
 		7D53DE601A6FE7C000DAD07B /* IPCaptureDataDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPCaptureDataDef.h; sourceTree = "<group>"; };
-		7D53DE611A6FF0DC00DAD07B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		7D53DE641A70A0C500DAD07B /* GCDWebServerFileStreamResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFileStreamResponse.m; sourceTree = "<group>"; };
 		7D53DE651A70A0C500DAD07B /* GCDWebServerFileStreamResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerFileStreamResponse.h; sourceTree = "<group>"; };
 		7D53DE681A70A9DF00DAD07B /* TTImageUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTImageUtilities.h; sourceTree = "<group>"; };
@@ -209,7 +207,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D53DE621A6FF0DC00DAD07B /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,7 +242,6 @@
 		7DF725C81A6F8CA000696A26 = {
 			isa = PBXGroup;
 			children = (
-				7D53DE611A6FF0DC00DAD07B /* libz.dylib */,
 				7DF725D31A6F8CA000696A26 /* iPro */,
 				7DF725D21A6F8CA000696A26 /* Products */,
 			);
@@ -546,7 +542,7 @@
 				TargetAttributes = {
 					7DF725D01A6F8CA000696A26 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 8PUEFH8BBB;
+						DevelopmentTeam = MJ264WK7DL;
 					};
 				};
 			};
@@ -749,6 +745,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = MJ264WK7DL;
 				INFOPLIST_FILE = iPro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -768,6 +765,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = MJ264WK7DL;
 				INFOPLIST_FILE = iPro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (

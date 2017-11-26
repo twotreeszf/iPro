@@ -247,6 +247,7 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
     /* Video */
     AVCaptureDevice* videoDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     _videoDevice = videoDevice;
+    
     AVCaptureDeviceInput* videoIn = [[AVCaptureDeviceInput alloc] initWithDevice:videoDevice error:nil];
     if ([_captureSession canAddInput:videoIn])
     {
@@ -269,17 +270,25 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
     }
     _videoConnection = [videoOut connectionWithMediaType:AVMediaTypeVideo];
 
-    int frameRate = 30;
-    NSString* sessionPreset = AVCaptureSessionPresetHigh;
-    CMTime frameDuration = CMTimeMake(1, frameRate);
-
+    
+    NSString* sessionPreset = AVCaptureSessionPreset1920x1080;
     _captureSession.sessionPreset = sessionPreset;
 
     NSError* error = nil;
     if ([videoDevice lockForConfiguration:&error])
     {
+        // frame duration
+        int frameRate = 30;
+        CMTime frameDuration = CMTimeMake(1, frameRate);
         videoDevice.activeVideoMaxFrameDuration = frameDuration;
         videoDevice.activeVideoMinFrameDuration = frameDuration;
+        
+        // focus mode
+        if ([videoDevice isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus])
+        {
+            videoDevice.focusMode = AVCaptureFocusModeContinuousAutoFocus;
+        }
+        
         [videoDevice unlockForConfiguration];
     }
     else
