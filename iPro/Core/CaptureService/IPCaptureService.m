@@ -16,6 +16,7 @@
 #import "GCDWebServerFileResponse.h"
 #import "TTImageUtilities.h"
 #import "PHAsset+Utility.h"
+#import "AFNetworking.h"
 
 #define kPreviewFrameWidth		240.0
 #define kMaxPreviewFrameCount   6
@@ -110,29 +111,30 @@
 
 - (void)start
 {
-	BOOL ret = YES;
-	{
-		NSArray* defaultPorts = @[@80, @88, @8888, @8080];
-		for (NSNumber* port in defaultPorts)
-		{
-			NSMutableDictionary* options = [NSMutableDictionary dictionary];
-			[options setObject:port forKey:GCDWebServerOption_Port];
-			[options setValue:kServiceName forKey:GCDWebServerOption_BonjourName];
-			[options setValue:kServiceType forKey:GCDWebServerOption_BonjourType];
-			
-			ret = [_webServer startWithOptions:options error:NULL];
-			if (ret)
-				break;
-		}
-		ERROR_CHECK_BOOL(ret);
-	}
-	
-Exit0:
-	return;
+    [self _startWebServer];
+    
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2. * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
+    {
+        [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status)
+         {
+             if (AFNetworkReachabilityStatusReachableViaWiFi == status)
+             {
+                 [self _stopWebServer];
+                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
+                 {
+                     [self _startWebServer];
+                 });
+             }
+         }];
+    });
 }
 
 - (void)stop
 {
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:nil];
+    [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
+    
 	if (CS_Recording == _status)
 	{
 		[_capture stopRecording];
@@ -331,6 +333,34 @@ Exit0:
             }];
         }
     }];
+}
+
+- (BOOL)_startWebServer
+{
+    BOOL ret = YES;
+    {
+        NSArray* defaultPorts = @[@80, @88, @8888, @8080];
+        for (NSNumber* port in defaultPorts)
+        {
+            NSMutableDictionary* options = [NSMutableDictionary dictionary];
+            [options setObject:port forKey:GCDWebServerOption_Port];
+            [options setValue:kServiceName forKey:GCDWebServerOption_BonjourName];
+            [options setValue:kServiceType forKey:GCDWebServerOption_BonjourType];
+            
+            ret = [_webServer startWithOptions:options error:NULL];
+            if (ret)
+                break;
+        }
+        ERROR_CHECK_BOOL(ret);
+    }
+    
+Exit0:
+    return ret;
+}
+
+- (void)_stopWebServer
+{
+    [_webServer stop];
 }
 
 @end
