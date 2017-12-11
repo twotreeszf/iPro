@@ -15,9 +15,11 @@
 #import "GCDWebServerFileStreamResponse.h"
 #import "GCDWebServerFileResponse.h"
 #import "TTImageUtilities.h"
+#import "PHAsset+Utility.h"
 
 #define kPreviewFrameWidth		240.0
 #define kMaxPreviewFrameCount   6
+#define kFileRollingFrames      (30 * 60 * 30)
 
 @interface IPCaptureService() <RosyWriterCapturePipelineDelegate>
 {
@@ -27,6 +29,9 @@
 	NSOperationQueue*			_optQueue;
     NSMutableArray*             _frameQueue;
 	IPCaptrueStatus				_status;
+    NSString*                   _currentFilePath;
+    BOOL                        _isRollingFile;
+    NSUInteger                  _currentFrames;
 }
 
 @end
@@ -209,10 +214,7 @@ Exit0:
 		return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not in running state"];
 	else
 	{
-		NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-		NSString* moviePath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.mov", time(NULL)]];
-		[_capture startRecordingWithURL:[NSURL fileURLWithPath:moviePath]];
-		
+        [self _startRecording];
 		_status = CS_Recording;
 		
 		return [GCDWebServerDataResponse responseWithJSONObject:@{ kResult : kOK}];
@@ -242,6 +244,15 @@ Exit0:
 
 - (void)capturePipeline:(RosyWriterCapturePipeline*)capturePipeline previewPixelBufferReadyForDisplay:(CVPixelBufferRef)previewPixelBuffer
 {
+    // deal file rolling
+    if (++_currentFrames >= kFileRollingFrames && !_isRollingFile)
+    {
+        _isRollingFile = YES;
+        [_capture stopRecording];
+        return;
+    }
+    
+    // cache frames for preview
 	@synchronized(self)
 	{
 		if ((_frameQueue.count + _optQueue.operationCount) >= kMaxPreviewFrameCount)
@@ -287,7 +298,39 @@ Exit0:
 
 - (void)capturePipelineRecordingDidStop:(RosyWriterCapturePipeline*)capturePipeline
 {
-	
+    [self _saveFileToPhotoLibrary:_currentFilePath];
+    _currentFilePath = nil;
+    _currentFrames = 0;
+    
+    if (_isRollingFile)
+        [self _startRecording];
+    
+    _isRollingFile = NO;
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+- (void)_startRecording
+{
+    NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString* moviePath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.mov", time(NULL)]];
+    [_capture startRecordingWithURL:[NSURL fileURLWithPath:moviePath]];
+    _currentFilePath = moviePath;
+}
+
+- (void)_saveFileToPhotoLibrary:(NSString*)filePath
+{
+    [PHAsset saveVideoAtURL:[NSURL fileURLWithPath:filePath] location:nil completionBlock:^(PHAsset *asset, BOOL success)
+    {
+        if (success)
+        {
+            [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+            [asset saveToAlbum:@"iPro-Movie" completionBlock:^(BOOL success)
+            {
+                ;
+            }];
+        }
+    }];
 }
 
 @end

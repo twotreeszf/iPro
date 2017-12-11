@@ -68,6 +68,7 @@
 		7DFA72921AA9542F00488409 /* MBSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFA72911AA9542F00488409 /* MBSliderView.m */; };
 		7DFA72951AA9920B00488409 /* IPLockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFA72941AA9920B00488409 /* IPLockVC.m */; };
 		E8554CA91FDE2EC80061851C /* IPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E8554CA81FDE2EC80061851C /* IPHelper.m */; };
+		E8696D4C1FDEB5B20053AB25 /* PHAsset+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = E8696D4B1FDEB5B10053AB25 /* PHAsset+Utility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -203,6 +204,8 @@
 		7DFA72941AA9920B00488409 /* IPLockVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPLockVC.m; sourceTree = "<group>"; };
 		E8554CA71FDE2EC80061851C /* IPHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPHelper.h; sourceTree = "<group>"; };
 		E8554CA81FDE2EC80061851C /* IPHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPHelper.m; sourceTree = "<group>"; };
+		E8696D4A1FDEB5B10053AB25 /* PHAsset+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHAsset+Utility.h"; sourceTree = "<group>"; };
+		E8696D4B1FDEB5B10053AB25 /* PHAsset+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PHAsset+Utility.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,6 +332,8 @@
 		7DF726031A6F8E2B00696A26 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				E8696D4A1FDEB5B10053AB25 /* PHAsset+Utility.h */,
+				E8696D4B1FDEB5B10053AB25 /* PHAsset+Utility.m */,
 				7DF726041A6F8E2B00696A26 /* AutoLocalize */,
 				7DF726091A6F8E2B00696A26 /* Log */,
 				7DF726281A6F8E2B00696A26 /* MBProgressHUD */,
@@ -641,6 +646,7 @@
 				7D53DE861A724A7200DAD07B /* AFHTTPRequestOperationManager.m in Sources */,
 				7DCA833C1A7F86DC00935B12 /* UIImage+Resize.m in Sources */,
 				7DF726401A6F8E2B00696A26 /* DDTTYLogger.m in Sources */,
+				E8696D4C1FDEB5B20053AB25 /* PHAsset+Utility.m in Sources */,
 				7DF7264D1A6F8E2B00696A26 /* UIView+UserData.m in Sources */,
 				7DF726A11A6FC68900696A26 /* GCDWebServerFileResponse.m in Sources */,
 				7DF725D71A6F8CA000696A26 /* main.m in Sources */,
