@@ -7,6 +7,7 @@
 //
 
 #import "IPMainVC.h"
+#import "IPHelper.h"
 
 @interface IPMainVC ()
 
@@ -22,6 +23,34 @@
     [bar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
     [bar setShadowImage:[[UIImage alloc] init]];
     [bar setTranslucent:YES];
+    
+    // request all permissions
+    [IPHelper requestPhotoLibraryAuthorization:^(BOOL success)
+    {
+        if (!success)
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Photo pimission is not granted" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+            [alert show];
+        }
+    }];
+    
+    [IPHelper requestCameraAuthorization:^(BOOL success)
+    {
+        if (!success)
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Camera pimission is not granted" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+            [alert show];
+        }
+    }];
+    
+    [IPHelper requestMicrophoneAuthorization:^(BOOL success)
+    {
+        if (!success)
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Microphone pimission is not granted" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+            [alert show];
+        }
+    }];
 }
 
 @end

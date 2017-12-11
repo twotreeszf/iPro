@@ -67,6 +67,7 @@
 		7DF726A61A6FC6C400696A26 /* IPCaptureService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF726A51A6FC6C400696A26 /* IPCaptureService.m */; };
 		7DFA72921AA9542F00488409 /* MBSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFA72911AA9542F00488409 /* MBSliderView.m */; };
 		7DFA72951AA9920B00488409 /* IPLockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFA72941AA9920B00488409 /* IPLockVC.m */; };
+		E8554CA91FDE2EC80061851C /* IPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E8554CA81FDE2EC80061851C /* IPHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -200,6 +201,8 @@
 		7DFA72911AA9542F00488409 /* MBSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBSliderView.m; sourceTree = "<group>"; };
 		7DFA72931AA9920B00488409 /* IPLockVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPLockVC.h; sourceTree = "<group>"; };
 		7DFA72941AA9920B00488409 /* IPLockVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPLockVC.m; sourceTree = "<group>"; };
+		E8554CA71FDE2EC80061851C /* IPHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPHelper.h; sourceTree = "<group>"; };
+		E8554CA81FDE2EC80061851C /* IPHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,6 +309,8 @@
 			children = (
 				7DF726A31A6FC6AB00696A26 /* CaptureService */,
 				7DF725FC1A6F8DD400696A26 /* VideoCapture */,
+				E8554CA71FDE2EC80061851C /* IPHelper.h */,
+				E8554CA81FDE2EC80061851C /* IPHelper.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -613,6 +618,7 @@
 				7DF726411A6F8E2B00696A26 /* DDContextFilterLogFormatter.m in Sources */,
 				7DCA834F1A80B37600935B12 /* NSNetService+ParseAddress.m in Sources */,
 				7DF7263D1A6F8E2B00696A26 /* DDASLLogger.m in Sources */,
+				E8554CA91FDE2EC80061851C /* IPHelper.m in Sources */,
 				7DF726511A6F940100696A26 /* IPMainVC.m in Sources */,
 				7D53DE661A70A0C500DAD07B /* GCDWebServerFileStreamResponse.m in Sources */,
 				7D53DE891A724A7200DAD07B /* AFSecurityPolicy.m in Sources */,

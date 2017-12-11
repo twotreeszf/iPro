@@ -44,13 +44,15 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Allow Microphone Usage?</string>
+	<string>Allow microphone usage?</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow photo library usage?</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Allow Camera Usage?</string>
+	<string>Allow camera usage?</string>
 </dict>
 </plist>
