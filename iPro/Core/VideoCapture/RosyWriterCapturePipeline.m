@@ -53,6 +53,7 @@
 #import <CoreMedia/CMAudioClock.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <ImageIO/CGImageProperties.h>
+#import "../RtspServer/CameraServer.h"
 
 /*
  RETAINED_BUFFER_COUNT is the number of pixel buffers we expect to hold on to from the renderer. This value informs the renderer how to size its buffer pool and how many pixel buffers to preallocate (done in the prepareWithOutputDimensions: method). Preallocation helps to lessen the chance of frame drops in our recording, in particular during recording startup. If we try to hold on to more buffers than RETAINED_BUFFER_COUNT then the renderer will fail to allocate new buffers from its pool and we will drop frames.
@@ -88,6 +89,8 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
     AVCaptureDevice* _videoDevice;
     AVCaptureConnection* _audioConnection;
     AVCaptureConnection* _videoConnection;
+    CameraServer* _rtspServer;
+    
     BOOL _running;
     BOOL _startCaptureSessionOnEnteringForeground;
     id _applicationWillEnterForegroundNotificationObserver;
@@ -162,6 +165,11 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
     _recorder = nil;
 }
 
+- (NSString*)rtspServerUrl
+{
+    return [_rtspServer getURL];
+}
+
 #pragma mark Delegate
 
 - (void)setDelegate:(id<RosyWriterCapturePipelineDelegate>)delegate callbackQueue:(dispatch_queue_t)delegateCallbackQueue // delegate is weak referenced
@@ -187,8 +195,11 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
 {
     dispatch_sync(_sessionQueue, ^{
 		[self setupCaptureSession];
-		
 		[_captureSession startRunning];
+        
+        _rtspServer = [CameraServer new];
+        [_rtspServer startup];
+        
 		_running = YES;
     });
 }
@@ -197,6 +208,9 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
 {
     dispatch_sync(_sessionQueue, ^{
 		_running = NO;
+        
+        [_rtspServer shutdown];
+        _rtspServer = nil;
 		
 		// the captureSessionDidStopRunning method will stop recording if necessary as well, but we do it here so that the last video and audio samples are better aligned
 		[self stopRecording]; // does nothing if we aren't currently recording
@@ -270,10 +284,15 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
     }
     _videoConnection = [videoOut connectionWithMediaType:AVMediaTypeVideo];
 
+    if ([_captureSession canSetSessionPreset:AVCaptureSessionPreset3840x2160])
+    {
+        _captureSession.sessionPreset = AVCaptureSessionPreset3840x2160;
+    }
+    else
+    {
+        _captureSession.sessionPreset = AVCaptureSessionPreset1920x1080;
+    }
     
-    NSString* sessionPreset = AVCaptureSessionPreset1920x1080;
-    _captureSession.sessionPreset = sessionPreset;
-
     NSError* error = nil;
     if ([videoDevice lockForConfiguration:&error])
     {
@@ -287,6 +306,25 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
         if ([videoDevice isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus])
         {
             videoDevice.focusMode = AVCaptureFocusModeContinuousAutoFocus;
+        }
+        
+        // exposure mode
+        if ([videoDevice isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure])
+        {
+            videoDevice.exposureMode = AVCaptureExposureModeContinuousAutoExposure;
+        }
+        
+        // low light
+        if ([videoDevice isLowLightBoostSupported])
+        {
+            videoDevice.automaticallyEnablesLowLightBoostWhenAvailable = YES;
+        }
+        
+        // HDR
+        if (videoDevice.activeFormat.videoHDRSupported)
+        {
+            videoDevice.automaticallyAdjustsVideoHDREnabled = NO;
+            videoDevice.videoHDREnabled = YES;
         }
         
         [videoDevice unlockForConfiguration];
@@ -536,6 +574,8 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
         else
         {
             [self renderVideoSampleBuffer:sampleBuffer];
+            if (_rtspServer.started)
+                [_rtspServer encodeFrame:sampleBuffer];
         }
     }
     else if (connection == _audioConnection)

@@ -20,7 +20,6 @@ typedef NS_ENUM(NSUInteger, IPCaptrueStatus)
 #define kAPIQueryStatus				@"/querystatus"
 #define kAPIStartCapturing			@"/startCapturing"
 #define kAPIStopCapturing			@"/stopCapturing"
-#define kAPIGetPreviewFrame			@"/getpreviewframe"
 #define kAPIStartRecording			@"/startrecording"
 #define kAPIStopRecording			@"/stoprecording"
 
@@ -29,6 +28,7 @@ typedef NS_ENUM(NSUInteger, IPCaptrueStatus)
 #define kStatus						@"Status"
 #define kBattery					@"Battery"
 #define kResult						@"Result"
+#define kRtspServer                 @"RtspServer"
 #define kOK							@"OK"
 
 #endif

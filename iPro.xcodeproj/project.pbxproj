@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		784C2C2FDAADEFB426523220 /* libPods-iPro.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C84D913BF8F1BCED2866002B /* libPods-iPro.a */; };
 		7D53DE661A70A0C500DAD07B /* GCDWebServerFileStreamResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DE641A70A0C500DAD07B /* GCDWebServerFileStreamResponse.m */; };
 		7D53DE6A1A70A9DF00DAD07B /* TTImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DE691A70A9DF00DAD07B /* TTImageUtilities.m */; };
 		7D53DE851A724A7200DAD07B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D53DE731A724A7200DAD07B /* AFHTTPRequestOperation.m */; };
@@ -67,11 +68,20 @@
 		7DF726A61A6FC6C400696A26 /* IPCaptureService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF726A51A6FC6C400696A26 /* IPCaptureService.m */; };
 		7DFA72921AA9542F00488409 /* MBSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFA72911AA9542F00488409 /* MBSliderView.m */; };
 		7DFA72951AA9920B00488409 /* IPLockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFA72941AA9920B00488409 /* IPLockVC.m */; };
+		E82D91462397FBD0008AFDD8 /* RTSPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82D91362397FBD0008AFDD8 /* RTSPServer.m */; };
+		E82D91472397FBD0008AFDD8 /* MP4Atom.m in Sources */ = {isa = PBXBuildFile; fileRef = E82D91382397FBD0008AFDD8 /* MP4Atom.m */; };
+		E82D91492397FBD0008AFDD8 /* CameraServer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82D913D2397FBD0008AFDD8 /* CameraServer.m */; };
+		E82D914A2397FBD0008AFDD8 /* RTSPClientConnection.mm in Sources */ = {isa = PBXBuildFile; fileRef = E82D91402397FBD0008AFDD8 /* RTSPClientConnection.mm */; };
+		E82D914B2397FBD0008AFDD8 /* AVEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = E82D91412397FBD0008AFDD8 /* AVEncoder.mm */; };
+		E82D914C2397FBD0008AFDD8 /* RTSPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E82D91422397FBD0008AFDD8 /* RTSPMessage.m */; };
+		E82D914D2397FBD0008AFDD8 /* VideoEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = E82D91452397FBD0008AFDD8 /* VideoEncoder.m */; };
+		E82D91502397FBFB008AFDD8 /* NALUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E82D914E2397FBFB008AFDD8 /* NALUnit.cpp */; };
 		E8554CA91FDE2EC80061851C /* IPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E8554CA81FDE2EC80061851C /* IPHelper.m */; };
 		E8696D4C1FDEB5B20053AB25 /* PHAsset+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = E8696D4B1FDEB5B10053AB25 /* PHAsset+Utility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		574FCA736325EDE8B0D52E60 /* Pods-iPro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iPro.release.xcconfig"; path = "Pods/Target Support Files/Pods-iPro/Pods-iPro.release.xcconfig"; sourceTree = "<group>"; };
 		7D53DE601A6FE7C000DAD07B /* IPCaptureDataDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPCaptureDataDef.h; sourceTree = "<group>"; };
 		7D53DE641A70A0C500DAD07B /* GCDWebServerFileStreamResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFileStreamResponse.m; sourceTree = "<group>"; };
 		7D53DE651A70A0C500DAD07B /* GCDWebServerFileStreamResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerFileStreamResponse.h; sourceTree = "<group>"; };
@@ -202,6 +212,24 @@
 		7DFA72911AA9542F00488409 /* MBSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBSliderView.m; sourceTree = "<group>"; };
 		7DFA72931AA9920B00488409 /* IPLockVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPLockVC.h; sourceTree = "<group>"; };
 		7DFA72941AA9920B00488409 /* IPLockVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPLockVC.m; sourceTree = "<group>"; };
+		80BB4ACDB900385594237B2B /* Pods-iPro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iPro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iPro/Pods-iPro.debug.xcconfig"; sourceTree = "<group>"; };
+		C84D913BF8F1BCED2866002B /* libPods-iPro.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iPro.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E82D91362397FBD0008AFDD8 /* RTSPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSPServer.m; sourceTree = "<group>"; };
+		E82D91372397FBD0008AFDD8 /* CameraServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraServer.h; sourceTree = "<group>"; };
+		E82D91382397FBD0008AFDD8 /* MP4Atom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MP4Atom.m; sourceTree = "<group>"; };
+		E82D91392397FBD0008AFDD8 /* RTSPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSPMessage.h; sourceTree = "<group>"; };
+		E82D913A2397FBD0008AFDD8 /* AVEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVEncoder.h; sourceTree = "<group>"; };
+		E82D913B2397FBD0008AFDD8 /* VideoEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoEncoder.h; sourceTree = "<group>"; };
+		E82D913D2397FBD0008AFDD8 /* CameraServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraServer.m; sourceTree = "<group>"; };
+		E82D913E2397FBD0008AFDD8 /* RTSPClientConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSPClientConnection.h; sourceTree = "<group>"; };
+		E82D913F2397FBD0008AFDD8 /* RTSPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSPServer.h; sourceTree = "<group>"; };
+		E82D91402397FBD0008AFDD8 /* RTSPClientConnection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RTSPClientConnection.mm; sourceTree = "<group>"; };
+		E82D91412397FBD0008AFDD8 /* AVEncoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AVEncoder.mm; sourceTree = "<group>"; };
+		E82D91422397FBD0008AFDD8 /* RTSPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSPMessage.m; sourceTree = "<group>"; };
+		E82D91432397FBD0008AFDD8 /* MP4Atom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MP4Atom.h; sourceTree = "<group>"; };
+		E82D91452397FBD0008AFDD8 /* VideoEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoEncoder.m; sourceTree = "<group>"; };
+		E82D914E2397FBFB008AFDD8 /* NALUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NALUnit.cpp; sourceTree = "<group>"; };
+		E82D914F2397FBFB008AFDD8 /* NALUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NALUnit.h; sourceTree = "<group>"; };
 		E8554CA71FDE2EC80061851C /* IPHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPHelper.h; sourceTree = "<group>"; };
 		E8554CA81FDE2EC80061851C /* IPHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPHelper.m; sourceTree = "<group>"; };
 		E8696D4A1FDEB5B10053AB25 /* PHAsset+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHAsset+Utility.h"; sourceTree = "<group>"; };
@@ -213,12 +241,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				784C2C2FDAADEFB426523220 /* libPods-iPro.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03DA5CB5D4E731722B9CA163 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				80BB4ACDB900385594237B2B /* Pods-iPro.debug.xcconfig */,
+				574FCA736325EDE8B0D52E60 /* Pods-iPro.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		1CAE80314D7069E2DBBB3589 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C84D913BF8F1BCED2866002B /* libPods-iPro.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7D53DE711A724A7200DAD07B /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +296,8 @@
 			children = (
 				7DF725D31A6F8CA000696A26 /* iPro */,
 				7DF725D21A6F8CA000696A26 /* Products */,
+				03DA5CB5D4E731722B9CA163 /* Pods */,
+				1CAE80314D7069E2DBBB3589 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -310,6 +358,7 @@
 		7DF725FB1A6F8DD400696A26 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				E82D91352397FBD0008AFDD8 /* RtspServer */,
 				7DF726A31A6FC6AB00696A26 /* CaptureService */,
 				7DF725FC1A6F8DD400696A26 /* VideoCapture */,
 				E8554CA71FDE2EC80061851C /* IPHelper.h */,
@@ -520,6 +569,29 @@
 			path = MBSliderView;
 			sourceTree = "<group>";
 		};
+		E82D91352397FBD0008AFDD8 /* RtspServer */ = {
+			isa = PBXGroup;
+			children = (
+				E82D91372397FBD0008AFDD8 /* CameraServer.h */,
+				E82D913D2397FBD0008AFDD8 /* CameraServer.m */,
+				E82D913F2397FBD0008AFDD8 /* RTSPServer.h */,
+				E82D91362397FBD0008AFDD8 /* RTSPServer.m */,
+				E82D913B2397FBD0008AFDD8 /* VideoEncoder.h */,
+				E82D91412397FBD0008AFDD8 /* AVEncoder.mm */,
+				E82D914F2397FBFB008AFDD8 /* NALUnit.h */,
+				E82D914E2397FBFB008AFDD8 /* NALUnit.cpp */,
+				E82D91432397FBD0008AFDD8 /* MP4Atom.h */,
+				E82D91382397FBD0008AFDD8 /* MP4Atom.m */,
+				E82D91392397FBD0008AFDD8 /* RTSPMessage.h */,
+				E82D91422397FBD0008AFDD8 /* RTSPMessage.m */,
+				E82D913A2397FBD0008AFDD8 /* AVEncoder.h */,
+				E82D91452397FBD0008AFDD8 /* VideoEncoder.m */,
+				E82D913E2397FBD0008AFDD8 /* RTSPClientConnection.h */,
+				E82D91402397FBD0008AFDD8 /* RTSPClientConnection.mm */,
+			);
+			path = RtspServer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -527,9 +599,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7DF725F41A6F8CA000696A26 /* Build configuration list for PBXNativeTarget "iPro" */;
 			buildPhases = (
+				ECF67ABF6784A2F1BECBD287 /* [CP] Check Pods Manifest.lock */,
 				7DF725CD1A6F8CA000696A26 /* Sources */,
 				7DF725CE1A6F8CA000696A26 /* Frameworks */,
 				7DF725CF1A6F8CA000696A26 /* Resources */,
+				D328F7094869E20BDE0FDC9E /* [CP] Embed Pods Frameworks */,
+				CBA2CBDFFA21FC556760B2B5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -552,7 +627,7 @@
 				TargetAttributes = {
 					7DF725D01A6F8CA000696A26 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = MJ264WK7DL;
+						DevelopmentTeam = 8PUEFH8BBB;
 					};
 				};
 			};
@@ -561,6 +636,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -586,6 +662,69 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		CBA2CBDFFA21FC556760B2B5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iPro/Pods-iPro-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D328F7094869E20BDE0FDC9E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iPro/Pods-iPro-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECF67ABF6784A2F1BECBD287 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iPro-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7DF725CD1A6F8CA000696A26 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -606,31 +745,38 @@
 				7DF7269D1A6FC68900696A26 /* GCDWebServerMultiPartFormRequest.m in Sources */,
 				7DF7269F1A6FC68900696A26 /* GCDWebServerDataResponse.m in Sources */,
 				7D53DE871A724A7200DAD07B /* AFHTTPSessionManager.m in Sources */,
+				E82D91462397FBD0008AFDD8 /* RTSPServer.m in Sources */,
 				7DFA72951AA9920B00488409 /* IPLockVC.m in Sources */,
 				7DCA83421A80A3B800935B12 /* IPServiceListCell.m in Sources */,
 				7DF7263C1A6F8E2B00696A26 /* DDASLLogCapture.m in Sources */,
 				7D53DE8C1A724A7200DAD07B /* AFURLResponseSerialization.m in Sources */,
+				E82D914D2397FBD0008AFDD8 /* VideoEncoder.m in Sources */,
 				7DF726021A6F8DD400696A26 /* RosyWriterCapturePipeline.m in Sources */,
 				7DF7269A1A6FC68900696A26 /* GCDWebServerResponse.m in Sources */,
 				7D53DE8A1A724A7200DAD07B /* AFURLConnectionOperation.m in Sources */,
 				7D53DE881A724A7200DAD07B /* AFNetworkReachabilityManager.m in Sources */,
 				7DF726571A6F94AA00696A26 /* IPServiceHostVC.m in Sources */,
 				7DF726461A6F8E2B00696A26 /* KPLogFormatter.m in Sources */,
+				E82D91502397FBFB008AFDD8 /* NALUnit.cpp in Sources */,
 				7DF726471A6F8E2B00696A26 /* MBProgressHUD.m in Sources */,
 				7DF726541A6F948F00696A26 /* IPRemoteControlVC.m in Sources */,
 				7D53DE851A724A7200DAD07B /* AFHTTPRequestOperation.m in Sources */,
 				7DF7263F1A6F8E2B00696A26 /* DDLog.m in Sources */,
+				E82D914C2397FBD0008AFDD8 /* RTSPMessage.m in Sources */,
 				7DF726411A6F8E2B00696A26 /* DDContextFilterLogFormatter.m in Sources */,
 				7DCA834F1A80B37600935B12 /* NSNetService+ParseAddress.m in Sources */,
 				7DF7263D1A6F8E2B00696A26 /* DDASLLogger.m in Sources */,
 				E8554CA91FDE2EC80061851C /* IPHelper.m in Sources */,
 				7DF726511A6F940100696A26 /* IPMainVC.m in Sources */,
 				7D53DE661A70A0C500DAD07B /* GCDWebServerFileStreamResponse.m in Sources */,
+				E82D91472397FBD0008AFDD8 /* MP4Atom.m in Sources */,
 				7D53DE891A724A7200DAD07B /* AFSecurityPolicy.m in Sources */,
 				7DF726A21A6FC68900696A26 /* GCDWebServerStreamedResponse.m in Sources */,
 				7DF7264C1A6F8E2B00696A26 /* TTEasyReleasePool.m in Sources */,
+				E82D91492397FBD0008AFDD8 /* CameraServer.m in Sources */,
 				7DF726A01A6FC68900696A26 /* GCDWebServerErrorResponse.m in Sources */,
 				7DF7264A1A6F8E2B00696A26 /* NSOperationQueue+GlobalQueue.m in Sources */,
+				E82D914A2397FBD0008AFDD8 /* RTSPClientConnection.mm in Sources */,
 				7DF7263B1A6F8E2B00696A26 /* DDAbstractDatabaseLogger.m in Sources */,
 				7DF726441A6F8E2B00696A26 /* NSThread+SequenceNumber.m in Sources */,
 				7DFA72921AA9542F00488409 /* MBSliderView.m in Sources */,
@@ -639,6 +785,7 @@
 				7DF725DA1A6F8CA000696A26 /* AppDelegate.m in Sources */,
 				7DF726981A6FC68900696A26 /* GCDWebServerFunctions.m in Sources */,
 				7DF726971A6FC68900696A26 /* GCDWebServerConnection.m in Sources */,
+				E82D914B2397FBD0008AFDD8 /* AVEncoder.mm in Sources */,
 				7D53DE8B1A724A7200DAD07B /* AFURLRequestSerialization.m in Sources */,
 				7DCA83451A80A51600935B12 /* IPServiceListVC.m in Sources */,
 				7DF7269B1A6FC68900696A26 /* GCDWebServerDataRequest.m in Sources */,
@@ -705,7 +852,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -743,7 +890,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -753,18 +900,20 @@
 		};
 		7DF725F51A6F8CA000696A26 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80BB4ACDB900385594237B2B /* Pods-iPro.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = MJ264WK7DL;
+				DEVELOPMENT_TEAM = 8PUEFH8BBB;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = iPro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iPro/3rdParty/libjpeg-turbo/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.twotrees.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.twotrees.iProx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -772,19 +921,21 @@
 		};
 		7DF725F61A6F8CA000696A26 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 574FCA736325EDE8B0D52E60 /* Pods-iPro.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = MJ264WK7DL;
+				DEVELOPMENT_TEAM = 8PUEFH8BBB;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = iPro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iPro/3rdParty/libjpeg-turbo/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.twotrees.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.twotrees.iProx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

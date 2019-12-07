@@ -9,24 +9,25 @@
 #import "IPRemoteControlVC.h"
 #import "AFNetworking.h"
 #import "IPCaptureDataDef.h"
-#import "TTImageUtilities.h"
+#import <MobileVLCKit/MobileVLCKit.h>
 
 #define kRequestTimeout 2.0
 
 @interface IPRemoteControlVC () <NSNetServiceBrowserDelegate>
 {
-	__weak IBOutlet UIImageView*	_previewImage;
-	__weak IBOutlet UILabel*		_batteryLevelLabel;
-	__weak IBOutlet UILabel*		_fpsLabel;
-	__weak IBOutlet UIButton*		_recordButton;
-	
+	__weak IBOutlet UIView*	            _videoView;
+	__weak IBOutlet UILabel*	        _batteryLevelLabel;
+	__weak IBOutlet UIButton*	        _recordButton;
+    __weak IBOutlet UISegmentedControl* _rotateControl;
+    
 	AFHTTPSessionManager*		_jsonRequest;
 	AFHTTPSessionManager*		_dataReqeust;
+    
+    VLCMediaPlayer*             _player;
 	
 	volatile IPCaptrueStatus	_status;
 	int							_batteryLevel;
-	NSTimeInterval				_lastFrameTime;
-	int							_frameCount;
+    NSString*                   _rtspUrl;
 	volatile BOOL				_shoudQuit;
     float                       _rotateDegree;
 }
@@ -40,8 +41,9 @@
     [super viewDidLoad];
     	
 	_status = CS_Init;
-    _rotateDegree = 0.0;
+    _videoView.translatesAutoresizingMaskIntoConstraints = NO;
 	
+    // request client
 	NSURL* URL = [NSURL URLWithString:_serverURL];
 	_jsonRequest = [[AFHTTPSessionManager alloc] initWithBaseURL:URL];
     [_jsonRequest.requestSerializer setTimeoutInterval:kRequestTimeout];
@@ -49,6 +51,10 @@
 	_dataReqeust = [[AFHTTPSessionManager alloc] initWithBaseURL:URL];
     [_dataReqeust.requestSerializer setTimeoutInterval:kRequestTimeout];
 	_dataReqeust.responseSerializer = [AFImageResponseSerializer new];
+
+    // vlc player
+    _player = [[VLCMediaPlayer alloc] initWithOptions:nil];
+    _player.drawable = _videoView;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -76,7 +82,7 @@
 
 - (IBAction)onRotate:(UISegmentedControl *)sender
 {
-    _rotateDegree = 90.0 * [sender selectedSegmentIndex];
+    [self dealStatus];
 }
 
 - (void)refreshStatus
@@ -86,6 +92,7 @@
 		NSDictionary* dic = (NSDictionary*)responseObject;
 		_status = [((NSNumber*)dic[kStatus]) intValue];
 		_batteryLevel = [((NSNumber*)dic[kBattery]) intValue];
+        _rtspUrl = dic[kRtspServer];
 
 		[self dealStatus];
 	}
@@ -127,31 +134,6 @@
 	 }];
 }
 
-- (void)fetchPreview
-{
-	[_dataReqeust GET:kAPIGetPreviewFrame parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
-	 {
-		 UIImage* frame = (UIImage*)responseObject;
-         
-         if (_rotateDegree != 0.0)
-         {
-             CGImageRef rotatedImage = [TTImageUtilities createRotatedImage:frame.CGImage degrees:_rotateDegree];
-             frame = [UIImage imageWithCGImage:rotatedImage];
-         }
-         
-         _previewImage.image = frame;
-		 
-		 [self dealStatus];
-	 }
-	failure:^(NSURLSessionDataTask *task, NSError *error)
-	 {
-         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
-         {
-             [self dealStatus];
-         });
-	 }];
-}
-
 - (void)startRecording
 {
 	[_jsonRequest GET:kAPIStartRecording parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
@@ -188,7 +170,6 @@
         _recordButton.enabled = NO;
         [_recordButton setImage:[UIImage imageNamed:@"CamGrey"] forState:UIControlStateNormal];
 		_batteryLevelLabel.text = @"?";
-		_fpsLabel.text = @"?";
         break;
     case CS_Running:
 	case CS_Recording:
@@ -197,17 +178,22 @@
 		else
 			[_recordButton setImage:[UIImage imageNamed:@"CamRed"] forState:UIControlStateNormal];
 
-        _recordButton.enabled = YES;
-		_batteryLevelLabel.text = [NSString stringWithFormat:@"%02d", _batteryLevel];
-			
-		NSTimeInterval timeNow = [[NSDate date] timeIntervalSince1970];
-		if (_lastFrameTime > 0.0)
-		{
-			NSTimeInterval frameSpan = timeNow - _lastFrameTime;
-			int fps = 1.0 / frameSpan;
-			_fpsLabel.text = [NSString stringWithFormat:@"%d", fps];
-		}
-		_lastFrameTime = timeNow;
+            _recordButton.enabled = YES;
+            _batteryLevelLabel.text = [NSString stringWithFormat:@"%02d", _batteryLevel];
+            
+            CGFloat rotateDegree = 90.0 * [_rotateControl selectedSegmentIndex] / 180.0 * M_PI;
+            _videoView.transform = CGAffineTransformMakeRotation(rotateDegree);
+            _videoView.frame = CGRectMake(0, 0, _videoView.superview.frame.size.width, _videoView.superview.frame.size.height);
+                
+            if (!(_player.playing || _player.willPlay))
+            {
+                if (_rtspUrl.length)
+                {
+                    _player.media = [VLCMedia mediaWithURL:[NSURL URLWithString:_rtspUrl]];
+                    [_player play];
+                }
+            }
+            
         break;
 
     default:
@@ -221,35 +207,22 @@
         {
             [self startCapturing];
         }
-        else if ((CS_Running == _status) || (CS_Recording == _status))
-        {
-			++_frameCount;
-			if (_frameCount > 20)
-			{
-				_frameCount = 0;
-				[self refreshStatus];
-			}
-			else
-			{
-				[self fetchPreview];
-			}
-        }
-        else if (CS_Lost == _status)
+        else if ((CS_Running == _status) || (CS_Recording == _status) || (CS_Lost == _status))
         {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
-			{
-			   [self refreshStatus];
+            {
+               [self refreshStatus];
             });
         }
     }
     else
     {
+        if ((_player.playing || _player.willPlay))
+            [_player stop];
+        
         if (CS_Running == _status)
-		{
-			   [self stopCapturing];
-		}
+            [self stopCapturing];
     }
 }
-
 
 @end

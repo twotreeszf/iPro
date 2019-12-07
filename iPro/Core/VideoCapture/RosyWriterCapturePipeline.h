@@ -70,6 +70,7 @@
 // Stats
 @property (readonly) float videoFrameRate;
 @property (readonly) CMVideoDimensions videoDimensions;
+@property (readonly) NSString* rtspServerUrl;
 
 @end
 

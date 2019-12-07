@@ -7,9 +7,9 @@
 //
 
 #ifdef __OBJC__
-	#import <UIKit/UIKit.h>
-	#import <Foundation/Foundation.h>
-#endif
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 #import "Misc/ErrorCheck.h"
 #import "Misc/CommonDef.h"
@@ -20,3 +20,6 @@
 #import "Misc/NSMutableArray+Stack.h"
 #import "Misc/AutoLocalize/AutoLocalize.h"
 #import "Misc/TTEasyReleasePool.h"
+
+#endif
+

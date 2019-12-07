@@ -27,8 +27,6 @@
 	GCDWebServer*				_webServer;
 	RosyWriterCapturePipeline*	_capture;
 	
-	NSOperationQueue*			_optQueue;
-    NSMutableArray*             _frameQueue;
 	IPCaptrueStatus				_status;
     NSString*                   _currentFilePath;
     BOOL                        _isRollingFile;
@@ -42,8 +40,6 @@
 - (instancetype)init
 {
 	self = [super init];
-    
-    _frameQueue = [NSMutableArray new];
 	
 	// web service
 	_webServer = [GCDWebServer new];
@@ -66,13 +62,7 @@
 	 {
 		 return [service stopCapturing:request];
 	 }];
-	
-	[_webServer addHandlerForMethod:@"GET" path:kAPIGetPreviewFrame requestClass:[GCDWebServerRequest class] processBlock:^
-	 GCDWebServerResponse *(GCDWebServerRequest *request)
-	 {
-		 return [service getPreviewFrame:request];
-	 }];
-	
+		
 	[_webServer addHandlerForMethod:@"GET" path:kAPIStartRecording requestClass:[GCDWebServerRequest class] processBlock:^
 	 GCDWebServerResponse *(GCDWebServerRequest *request)
 	 {
@@ -84,11 +74,7 @@
 	 {
 		 return [service stopRecording:request];
 	 }];
-	
-	// capture service
-	_optQueue = [NSOperationQueue new];
-	_optQueue.maxConcurrentOperationCount = 1;
-	
+		
 	_capture = [RosyWriterCapturePipeline new];
 	[_capture setDelegate:self callbackQueue:dispatch_get_main_queue()];
 	
@@ -97,11 +83,9 @@
 
 - (void)dealloc
 {
-	_optQueue = nil;
 	_capture = nil;
 	_status = CS_Init;
 	_webServer = nil;
-    _frameQueue = nil;
 }
 
 - (void)setRecordingOrientation:(AVCaptureVideoOrientation)recordingOrientation
@@ -149,10 +133,6 @@
 		_status = CS_Init;
 	}
 	
-	[_optQueue cancelAllOperations];
-	[_optQueue waitUntilAllOperationsAreFinished];
-	_frameQueue = nil;
-	
 	[_webServer stop];
 }
 
@@ -161,11 +141,15 @@
 
 - (GCDWebServerResponse*)queryStatus:(GCDWebServerRequest*)request
 {
-	NSNumber* batteryLevel = [NSNumber numberWithInt:[UIDevice currentDevice].batteryLevel * 100];
-	return [GCDWebServerDataResponse responseWithJSONObject:@{
-															  kStatus : [NSNumber numberWithInt:_status],
-															  kBattery: batteryLevel
-															  }];
+    NSMutableDictionary* dic = [NSMutableDictionary new];
+    dic[kStatus] = [NSNumber numberWithInt:(int)_status];
+    dic[kBattery] = [NSNumber numberWithInt:[UIDevice currentDevice].batteryLevel * 100];
+    
+    NSString* rtspUrl = _capture.rtspServerUrl;
+    if (rtspUrl.length)
+        dic[kRtspServer] = rtspUrl;
+    
+	return [GCDWebServerDataResponse responseWithJSONObject:dic];
 }
 
 - (GCDWebServerResponse*)startCapturing:(GCDWebServerRequest*)request
@@ -191,22 +175,6 @@
 		_status = CS_Init;
 		
 		return [GCDWebServerDataResponse responseWithJSONObject:@{ kResult : kOK}];
-	}
-}
-
-- (GCDWebServerResponse*)getPreviewFrame:(GCDWebServerRequest*)request
-{
-	NSData* frame;
-	@synchronized(self)
-	{
-        frame = [_frameQueue dequeue];
-	}
-	
-	if (!frame)
-		return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_NotFound message:@"Preivew frame not ready"];
-	else
-	{
-		return [GCDWebServerDataResponse responseWithData:frame contentType:@"image/jpeg"];
 	}
 }
 
@@ -251,31 +219,7 @@
     {
         _isRollingFile = YES;
         [_capture stopRecording];
-        return;
     }
-    
-    // cache frames for preview
-	@synchronized(self)
-	{
-		if ((_frameQueue.count + _optQueue.operationCount) >= kMaxPreviewFrameCount)
-			return;
-	}
-	
-	CFRetain(previewPixelBuffer);
-	
-	[_optQueue addOperationWithBlock:^
-	{
-		TTEasyReleasePool* pool = [TTEasyReleasePool new];
-		[pool autoreleaseCFOBJ:previewPixelBuffer];
-        
-        UIImage* frame = [TTImageUtilities aspectScaleImage:previewPixelBuffer KeepLongside:kPreviewFrameWidth];
-        NSData* data = UIImageJPEGRepresentation(frame, 0.9);
-        
-        @synchronized(self)
-        {
-            [_frameQueue enqueue:data];
-        }
-	}];
 }
 
 - (void)capturePipelineDidRunOutOfPreviewBuffers:(RosyWriterCapturePipeline*)capturePipeline

@@ -49,6 +49,7 @@ static const CGFloat gradientDimAlpha = 0.5;
 }
 -(void) awakeFromNib
 {
+    [super awakeFromNib];
     [self loadContent];
 }
 
@@ -65,7 +66,7 @@ static const CGFloat gradientDimAlpha = 0.5;
         _label.textColor = [UIColor whiteColor];
         _label.textAlignment = NSTextAlignmentCenter;
         _label.backgroundColor = [UIColor clearColor];
-        _label.font = [UIFont systemFontOfSize:24];
+        _label.font =[UIFont fontWithName:@"HelveticaNeue-Light" size:24];
         _label.text = @"Slide";
         [self addSubview:_label];
         _label.animated = self.animated;
