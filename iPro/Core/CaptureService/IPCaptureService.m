@@ -100,24 +100,14 @@
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2. * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
     {
-        [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status)
-         {
-             if (AFNetworkReachabilityStatusReachableViaWiFi == status)
-             {
-                 [self _stopWebServer];
-                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
-                 {
-                     [self _startWebServer];
-                 });
-             }
-         }];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onNotifyNetworkChange:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
     });
 }
 
 - (void)stop
 {
-    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:nil];
     [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
 	if (CS_Recording == _status)
 	{
@@ -134,6 +124,19 @@
 	}
 	
 	[_webServer stop];
+}
+
+- (void)onNotifyNetworkChange:(NSNotification*)notification
+{
+    AFNetworkReachabilityStatus status = ((NSNumber*)notification.userInfo[AFNetworkingReachabilityNotificationStatusItem]).integerValue ;
+    if (AFNetworkReachabilityStatusReachableViaWiFi == status)
+    {
+        [self _stopWebServer];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
+        {
+            [self _startWebServer];
+        });
+    }
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------

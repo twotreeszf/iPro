@@ -170,6 +170,9 @@
         _recordButton.enabled = NO;
         [_recordButton setImage:[UIImage imageNamed:@"CamGrey"] forState:UIControlStateNormal];
 		_batteryLevelLabel.text = @"?";
+            
+        if ((_player.playing || _player.willPlay))
+            [_player stop];
         break;
     case CS_Running:
 	case CS_Recording:

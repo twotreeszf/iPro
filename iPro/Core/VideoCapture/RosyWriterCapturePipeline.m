@@ -54,6 +54,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <ImageIO/CGImageProperties.h>
 #import "../RtspServer/CameraServer.h"
+#import "AFNetworking.h"
 
 /*
  RETAINED_BUFFER_COUNT is the number of pixel buffers we expect to hold on to from the renderer. This value informs the renderer how to size its buffer pool and how many pixel buffers to preallocate (done in the prepareWithOutputDimensions: method). Preallocation helps to lessen the chance of frame drops in our recording, in particular during recording startup. If we try to hold on to more buffers than RETAINED_BUFFER_COUNT then the renderer will fail to allocate new buffers from its pool and we will drop frames.
@@ -199,13 +200,19 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
         
         _rtspServer = [CameraServer new];
         [_rtspServer startup];
-        
 		_running = YES;
+    });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2. * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onNotifyNetworkChange:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
     });
 }
 
 - (void)stopRunning
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     dispatch_sync(_sessionQueue, ^{
 		_running = NO;
         
@@ -221,6 +228,19 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
 		
 		[self teardownCaptureSession];
     });
+}
+
+- (void)onNotifyNetworkChange:(NSNotification*)notification
+{
+    AFNetworkReachabilityStatus status = ((NSNumber*)notification.userInfo[AFNetworkingReachabilityNotificationStatusItem]).integerValue ;
+    if (AFNetworkReachabilityStatusReachableViaWiFi == status)
+    {
+        [_rtspServer shutdown];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
+        {
+            [_rtspServer startup];
+        });
+    }
 }
 
 - (void)setupCaptureSession
