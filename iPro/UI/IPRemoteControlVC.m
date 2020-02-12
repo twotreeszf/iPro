@@ -18,6 +18,9 @@
 	__weak IBOutlet UIView*	            _videoView;
 	__weak IBOutlet UILabel*	        _batteryLevelLabel;
 	__weak IBOutlet UIButton*	        _recordButton;
+    __weak IBOutlet UIView*             _hudView;
+    __weak IBOutlet UISlider*           _expoSlider;
+    __weak IBOutlet UILabel*            _expoBiasLabel;
     __weak IBOutlet UISegmentedControl* _rotateControl;
     
 	AFHTTPSessionManager*		_jsonRequest;
@@ -78,6 +81,30 @@
 	{
 		[self stopRecording];
 	}
+}
+
+- (IBAction)onHud:(id)sender
+{
+    _hudView.hidden = !_hudView.hidden;
+}
+
+- (IBAction)onSlideExpo:(UISlider*)sender
+{
+    _expoBiasLabel.text = [NSString stringWithFormat:@"%0.1f", sender.value];
+}
+
+- (IBAction)onSetExpo:(UISlider *)sender
+{
+    NSDictionary* params = @{kExpoBias: [NSNumber numberWithFloat:sender.value]};
+    [_jsonRequest GET:kAPISetExpoBias parameters:params success:^(NSURLSessionDataTask *task, id responseObject)
+    {
+        // ok
+    }
+    failure:^(NSURLSessionDataTask *task, NSError *error)
+    {
+        _status = CS_Lost;
+        [self dealStatus];
+    }];
 }
 
 - (IBAction)onRotate:(UISegmentedControl *)sender
@@ -170,6 +197,7 @@
         _recordButton.enabled = NO;
         [_recordButton setImage:[UIImage imageNamed:@"CamGrey"] forState:UIControlStateNormal];
 		_batteryLevelLabel.text = @"?";
+        _expoSlider.enabled = NO;
             
         if ((_player.playing || _player.willPlay))
             [_player stop];
@@ -183,6 +211,7 @@
 
             _recordButton.enabled = YES;
             _batteryLevelLabel.text = [NSString stringWithFormat:@"%02d", _batteryLevel];
+            _expoSlider.enabled = YES;
             
             CGFloat rotateDegree = 90.0 * [_rotateControl selectedSegmentIndex] / 180.0 * M_PI;
             _videoView.transform = CGAffineTransformMakeRotation(rotateDegree);

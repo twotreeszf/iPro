@@ -374,6 +374,7 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
         _captureSession = nil;
         _videoCompressionSettings = nil;
         _audioCompressionSettings = nil;
+        _videoDevice = nil;
     }
 }
 
@@ -677,6 +678,26 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
     }
 
     [self.recorder finishRecording]; // asynchronous, will call us back with recorderDidFinishRecording: or recorder:didFailWithError: when done
+}
+
+- (void)setExposureTargetBias:(float)bias
+{
+    dispatch_sync(_sessionQueue, ^
+    {
+        if (!_videoDevice)
+            return ;
+        
+        NSError* error;
+        if ([_videoDevice lockForConfiguration:&error])
+        {
+            [_videoDevice setExposureTargetBias:bias completionHandler:nil];
+            [_videoDevice unlockForConfiguration];
+        }
+        else
+        {
+            NSLog( @"Could not lock device for configuration: %@", error );
+        }
+    });
 }
 
 #pragma mark MovieRecorder Delegate

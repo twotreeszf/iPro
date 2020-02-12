@@ -63,6 +63,8 @@
 - (void)startRecordingWithURL:(NSURL*)url;
 - (void)stopRecording;
 
+- (void)setExposureTargetBias:(float)bias;
+
 @property (readwrite) AVCaptureVideoOrientation recordingOrientation; // client can set the orientation for the recorded movie
 
 - (CGAffineTransform)transformFromVideoBufferOrientationToOrientation:(AVCaptureVideoOrientation)orientation withAutoMirroring:(BOOL)mirroring; // only valid after startRunning has been called

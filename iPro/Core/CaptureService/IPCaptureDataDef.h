@@ -17,18 +17,20 @@ typedef NS_ENUM(NSUInteger, IPCaptrueStatus)
 	CS_Lost
 };
 
-#define kAPIQueryStatus				@"/querystatus"
+#define kAPIQueryStatus				@"/queryStatus"
 #define kAPIStartCapturing			@"/startCapturing"
 #define kAPIStopCapturing			@"/stopCapturing"
-#define kAPIStartRecording			@"/startrecording"
-#define kAPIStopRecording			@"/stoprecording"
+#define kAPIStartRecording			@"/startRecording"
+#define kAPIStopRecording			@"/stopRecording"
+#define kAPISetExpoBias             @"/setExpoBias"
 
-#define kServiceName				@"RemoteVideoCapture"
+#define kServiceName				@"remoteVideoCapture"
 #define kServiceType				@"_remote_video_capture._tcp."
-#define kStatus						@"Status"
-#define kBattery					@"Battery"
-#define kResult						@"Result"
-#define kRtspServer                 @"RtspServer"
-#define kOK							@"OK"
+#define kStatus						@"status"
+#define kBattery					@"battery"
+#define kResult						@"result"
+#define kRtspServer                 @"rtspServer"
+#define kOK							@"ok"
+#define kExpoBias                   @"expoBias"
 
 #endif

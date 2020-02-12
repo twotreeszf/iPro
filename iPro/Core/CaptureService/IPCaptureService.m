@@ -74,6 +74,12 @@
 	 {
 		 return [service stopRecording:request];
 	 }];
+    
+    [_webServer addHandlerForMethod:@"GET" path:kAPISetExpoBias requestClass:[GCDWebServerRequest class] processBlock:^
+    GCDWebServerResponse *(GCDWebServerRequest *request)
+    {
+        return [service setExpoBias:request];
+    }];
 		
 	_capture = [RosyWriterCapturePipeline new];
 	[_capture setDelegate:self callbackQueue:dispatch_get_main_queue()];
@@ -205,6 +211,19 @@
 		
 		return [GCDWebServerDataResponse responseWithJSONObject:@{ kResult : kOK}];
 	}
+}
+
+- (GCDWebServerResponse*)setExpoBias:(GCDWebServerRequest*)request
+{
+    if (CS_Init == _status)
+        return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not inited"];
+    else
+    {
+        float expoBias = ((NSNumber*)request.query[kExpoBias]).floatValue;
+        [_capture setExposureTargetBias:expoBias];
+        
+        return [GCDWebServerDataResponse responseWithJSONObject:@{ kResult : kOK}];
+    }
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------
