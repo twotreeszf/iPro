@@ -603,8 +603,6 @@
 				7DF725CD1A6F8CA000696A26 /* Sources */,
 				7DF725CE1A6F8CA000696A26 /* Frameworks */,
 				7DF725CF1A6F8CA000696A26 /* Resources */,
-				D328F7094869E20BDE0FDC9E /* [CP] Embed Pods Frameworks */,
-				CBA2CBDFFA21FC556760B2B5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -663,44 +661,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		CBA2CBDFFA21FC556760B2B5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iPro/Pods-iPro-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D328F7094869E20BDE0FDC9E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iPro/Pods-iPro-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		ECF67ABF6784A2F1BECBD287 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
