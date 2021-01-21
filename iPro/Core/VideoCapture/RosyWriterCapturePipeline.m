@@ -317,10 +317,8 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
     if ([videoDevice lockForConfiguration:&error])
     {
         // frame duration
-        int frameRate = 30;
-        CMTime frameDuration = CMTimeMake(1, frameRate);
-        videoDevice.activeVideoMaxFrameDuration = frameDuration;
-        videoDevice.activeVideoMinFrameDuration = frameDuration;
+       videoDevice.activeVideoMaxFrameDuration = CMTimeMake(1, 30);
+        videoDevice.activeVideoMinFrameDuration = CMTimeMake(1, 10);;
         
         // focus mode
         if ([videoDevice isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus])
@@ -344,7 +342,7 @@ typedef NS_ENUM(NSInteger, RosyWriterRecordingStatus)
         if (videoDevice.activeFormat.videoHDRSupported)
         {
             videoDevice.automaticallyAdjustsVideoHDREnabled = NO;
-            videoDevice.videoHDREnabled = YES;
+            videoDevice.videoHDREnabled = NO;
         }
         
         [videoDevice unlockForConfiguration];
