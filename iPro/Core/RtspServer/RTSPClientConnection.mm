@@ -308,20 +308,15 @@ static void onRTCP(CFSocketRef s,
 
 - (NSString*) makeSDP
 {
-    NSData* config = [_server getConfigData];
-    
-    avcCHeader avcC((const BYTE*)[config bytes], (int)[config length]);
     SeqParamSet seqParams;
-    seqParams.Parse(avcC.sps());
+    NALUnit spsUnit = NALUnit((const BYTE*)_server.sps.bytes, (int)_server.sps.length);
+    seqParams.Parse(&spsUnit);
     int cx = (int)seqParams.EncodedWidth();
     int cy = (int)seqParams.EncodedHeight();
     
     NSString* profile_level_id = [NSString stringWithFormat:@"%02x%02x%02x", seqParams.Profile(), seqParams.Compat(), seqParams.Level()];
-    
-    NSData* data = [NSData dataWithBytes:avcC.sps()->Start() length:avcC.sps()->Length()];
-    NSString* sps = encodeToBase64(data);
-    data = [NSData dataWithBytes:avcC.pps()->Start() length:avcC.pps()->Length()];
-    NSString* pps = encodeToBase64(data);
+    NSString* sps = encodeToBase64(_server.sps);
+    NSString* pps = encodeToBase64(_server.pps);
     
     // !! o=, s=, u=, c=, b=? control for track?
     unsigned long verid = random();

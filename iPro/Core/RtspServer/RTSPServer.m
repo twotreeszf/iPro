@@ -16,7 +16,6 @@
 {
     CFSocketRef _listener;
     NSMutableArray* _connections;
-    NSData* _configData;
     int _bitrate;
 }
 
@@ -53,19 +52,18 @@ static void onSocket (
 
 @synthesize bitrate = _bitrate;
 
-+ (RTSPServer*) setupListener:(NSData*) configData
++ (RTSPServer*) setupListener
 {
     RTSPServer* obj = [RTSPServer alloc];
-    if (![obj init:configData])
+    if (![obj init])
     {
         return nil;
     }
     return obj;
 }
 
-- (RTSPServer*) init:(NSData*) configData
+- (RTSPServer*) init
 {
-    _configData = configData;
     _connections = [NSMutableArray arrayWithCapacity:10];
     
     CFSocketContext info;
@@ -96,11 +94,6 @@ static void onSocket (
     CFRelease(rls);
     
     return self;
-}
-
-- (NSData*) getConfigData
-{
-    return _configData;
 }
 
 - (void) onAccept:(CFSocketNativeHandle) childHandle

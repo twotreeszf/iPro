@@ -15,13 +15,14 @@
 
 
 + (NSString*) getIPAddress;
-+ (RTSPServer*) setupListener:(NSData*) configData;
++ (RTSPServer*) setupListener;
 
-- (NSData*) getConfigData;
 - (void) onVideoData:(NSArray*) data time:(double) pts;
 - (void) shutdownConnection:(id) conn;
 - (void) shutdownServer;
 
+@property (readwrite, nonatomic, strong) NSData* sps;
+@property (readwrite, nonatomic, strong) NSData* pps;
 @property (readwrite, atomic) int bitrate;
 
 @end

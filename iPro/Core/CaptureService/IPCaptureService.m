@@ -101,35 +101,39 @@
 
 - (void)start
 {
-    [self _startWebServer];
-    
-    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2. * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
-    {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onNotifyNetworkChange:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
-    });
+    @synchronized (self) {
+        [self _startWebServer];
+        
+        [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2. * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
+        {
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onNotifyNetworkChange:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
+        });
+    }
 }
 
 - (void)stop
 {
-    [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-	if (CS_Recording == _status)
-	{
-		[_capture stopRecording];
-		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:2.0]];
-		
-		_status = CS_Running;
-	}
-	
-	if (CS_Running == _status)
-	{
-		[_capture stopRunning];
-		_status = CS_Init;
-	}
-	
-	[_webServer stop];
+    @synchronized (self) {
+        [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        
+        if (CS_Recording == _status)
+        {
+            [_capture stopRecording];
+            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:2.0]];
+            
+            _status = CS_Running;
+        }
+        
+        if (CS_Running == _status)
+        {
+            [_capture stopRunning];
+            _status = CS_Init;
+        }
+        
+        [self _stopWebServer];
+    }
 }
 
 - (void)onNotifyNetworkChange:(NSNotification*)notification
@@ -150,79 +154,91 @@
 
 - (GCDWebServerResponse*)queryStatus:(GCDWebServerRequest*)request
 {
-    NSMutableDictionary* dic = [NSMutableDictionary new];
-    dic[kStatus] = [NSNumber numberWithInt:(int)_status];
-    dic[kBattery] = [NSNumber numberWithInt:[UIDevice currentDevice].batteryLevel * 100];
-    
-    NSString* rtspUrl = _capture.rtspServerUrl;
-    if (rtspUrl.length)
-        dic[kRtspServer] = rtspUrl;
-    
-	return [GCDWebServerDataResponse responseWithJSONObject:dic];
+    @synchronized (self) {
+        NSMutableDictionary* dic = [NSMutableDictionary new];
+        dic[kStatus] = [NSNumber numberWithInt:(int)_status];
+        dic[kBattery] = [NSNumber numberWithInt:[UIDevice currentDevice].batteryLevel * 100];
+        
+        NSString* rtspUrl = _capture.rtspServerUrl;
+        if (rtspUrl.length)
+            dic[kRtspServer] = rtspUrl;
+        
+        return [GCDWebServerDataResponse responseWithJSONObject:dic];
+    }
 }
 
 - (GCDWebServerResponse*)startCapturing:(GCDWebServerRequest*)request
 {
-	if (CS_Init != _status)
-		return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not in init state"];
-	else
-	{
-		[_capture startRunning];
-		_status = CS_Running;
-		
-		return [GCDWebServerDataResponse responseWithJSONObject:@{ kResult : kOK}];
-	}
+    @synchronized (self) {
+        if (CS_Init != _status)
+            return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not in init state"];
+        else
+        {
+            [_capture startRunning];
+            _status = CS_Running;
+            
+            return [GCDWebServerDataResponse responseWithJSONObject:@{ kResult : kOK}];
+        }
+    }
 }
 
 - (GCDWebServerResponse*)stopCapturing:(GCDWebServerRequest*)request
 {
-	if (CS_Running != _status)
-		return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not in running state"];
-	else
-	{
-		[_capture stopRunning];
-		_status = CS_Init;
-		
-		return [GCDWebServerDataResponse responseWithJSONObject:@{ kResult : kOK}];
-	}
+    @synchronized (self) {
+        if (CS_Running != _status)
+            return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not in running state"];
+        else
+        {
+            [_capture stopRunning];
+            _status = CS_Init;
+            
+            return [GCDWebServerDataResponse responseWithJSONObject:@{ kResult : kOK}];
+        }
+    }
 }
 
 - (GCDWebServerResponse*)startRecording:(GCDWebServerRequest*)request
 {
-	if (CS_Running != _status)
-		return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not in running state"];
-	else
-	{
-        [self _startRecording];
-		_status = CS_Recording;
-		
-		return [GCDWebServerDataResponse responseWithJSONObject:@{ kResult : kOK}];
-	}
+    @synchronized (self) {
+        if (CS_Running != _status)
+            return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not in running state"];
+        else
+        {
+            [self _startRecording];
+            _status = CS_Recording;
+            
+            return [GCDWebServerDataResponse responseWithJSONObject:@{ kResult : kOK}];
+        }
+    }
 }
 
 - (GCDWebServerResponse*)stopRecording:(GCDWebServerRequest*)request
 {
-	if (CS_Recording != _status)
-		return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not in recording state"];
-	else
-	{
-		[_capture stopRecording];
-		_status = CS_Running;
-		
-		return [GCDWebServerDataResponse responseWithJSONObject:@{ kResult : kOK}];
-	}
+    @synchronized (self) {
+        if (CS_Recording != _status)
+            return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not in recording state"];
+        else
+        {
+            [_capture stopRecording];
+            _status = CS_Running;
+            
+            return [GCDWebServerDataResponse responseWithJSONObject:@{ kResult : kOK}];
+        }
+    }
 }
 
 - (GCDWebServerResponse*)setExpoBias:(GCDWebServerRequest*)request
 {
-    if (CS_Init == _status)
-        return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not inited"];
-    else
-    {
-        float expoBias = ((NSNumber*)request.query[kExpoBias]).floatValue;
-        [_capture setExposureTargetBias:expoBias];
-        
-        return [GCDWebServerDataResponse responseWithJSONObject:@{ kResult : kOK}];
+    @synchronized (self) {
+        if (CS_Init == _status)
+            return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_BadRequest message:@"Capture server is not inited"];
+        else
+        {
+            float expoBias = ((NSNumber*)request.query[kExpoBias]).floatValue;
+            [_capture setExposureTargetBias:expoBias];
+            
+            return [GCDWebServerDataResponse responseWithJSONObject:@{ kResult : kOK}];
+        }
     }
 }
 
