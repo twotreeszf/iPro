@@ -11,6 +11,8 @@
 #import "ifaddrs.h"
 #import "arpa/inet.h"
 
+#define kPort 8554
+
 @interface RTSPServer ()
 
 {
@@ -79,7 +81,7 @@ static void onSocket (
     struct sockaddr_in addr;
     addr.sin_addr.s_addr = INADDR_ANY;
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(554);
+    addr.sin_port = htons(kPort);
     CFDataRef dataAddr = CFDataCreate(nil, (const uint8_t*)&addr, sizeof(addr));
     CFSocketError e = CFSocketSetAddress(_listener, dataAddr);
     CFRelease(dataAddr);
@@ -168,6 +170,12 @@ static void onSocket (
     }
     freeifaddrs(interfaces);
     return address;
+}
+
++ (NSString*) getRtspUrl {
+    NSString* ipaddr = [self getIPAddress];
+    NSString* url = [NSString stringWithFormat:@"rtsp://%@:%d/", ipaddr, kPort];
+    return url;
 }
 
 @end

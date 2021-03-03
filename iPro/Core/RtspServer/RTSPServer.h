@@ -13,8 +13,7 @@
 
 @interface RTSPServer : NSObject
 
-
-+ (NSString*) getIPAddress;
++ (NSString*) getRtspUrl;
 + (RTSPServer*) setupListener;
 
 - (void) onVideoData:(NSArray*) data time:(double) pts;

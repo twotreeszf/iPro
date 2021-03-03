@@ -52,5 +52,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>iPro device discovery</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_remote_video_capture._tcp.</string>
+	</array>
 </dict>
 </plist>

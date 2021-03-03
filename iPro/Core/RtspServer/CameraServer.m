@@ -84,9 +84,7 @@ static CameraServer* theServer;
 
 - (NSString*) getURL
 {
-    NSString* ipaddr = [RTSPServer getIPAddress];
-    NSString* url = [NSString stringWithFormat:@"rtsp://%@/", ipaddr];
-    return url;
+    return [RTSPServer getRtspUrl];
 }
 
 - (void)videoEncoder:(nullable id<LFVideoEncoding>)encoder videoFrame:(nullable LFVideoFrame *)frame {
