@@ -32,12 +32,12 @@ static CameraServer* theServer;
     _rtsp = [RTSPServer setupListener];
     
     _streamQueue = dispatch_queue_create("com.twotrees.ipro.rtspstream", DISPATCH_QUEUE_SERIAL);
-    _config = [LFLiveVideoConfiguration defaultConfigurationForQuality:LFLiveVideoQuality_High outputImageOrientation:UIInterfaceOrientationLandscapeLeft];
-    _config.videoFrameRate = 30;
-    _config.videoMaxFrameRate = 30;
+    _config = [LFLiveVideoConfiguration defaultConfigurationForQuality:LFLiveVideoQuality_Medium outputImageOrientation:UIInterfaceOrientationLandscapeLeft];
+    _config.videoFrameRate = 20;
+    _config.videoMaxFrameRate = 20;
     _config.videoMinFrameRate = 15;
-    _config.videoBitRate = 8 * 1024 * 1024;
-    _config.videoMaxKeyframeInterval = 10;
+    _config.videoBitRate = 4 * 1024 * 1024;
+    _config.videoMaxKeyframeInterval = 5;
     
     _encoder = [[LFHardwareVideoEncoder alloc] initWithVideoStreamConfiguration:_config];
     [_encoder setDelegate:self];

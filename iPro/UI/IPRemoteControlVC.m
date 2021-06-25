@@ -9,9 +9,9 @@
 #import "IPRemoteControlVC.h"
 #import "AFNetworking.h"
 #import "IPCaptureDataDef.h"
-#import <MobileVLCKit/MobileVLCKit.h>
+#import <IJKMediaFramework/IJKMediaPlayer.h>
 
-#define kRequestTimeout 2.0
+#define kRequestTimeout 5.0
 
 @interface IPRemoteControlVC () <NSNetServiceBrowserDelegate>
 {
@@ -23,10 +23,9 @@
     __weak IBOutlet UILabel*            _expoBiasLabel;
     __weak IBOutlet UISegmentedControl* _rotateControl;
     
-	AFHTTPSessionManager*		_jsonRequest;
-	AFHTTPSessionManager*		_dataReqeust;
-    
-    VLCMediaPlayer*             _player;
+	AFHTTPSessionManager*		    _jsonRequest;
+	AFHTTPSessionManager*		    _dataReqeust;
+    IJKFFMoviePlayerController*     _player;
 	
 	volatile IPCaptrueStatus	_status;
 	int							_batteryLevel;
@@ -54,10 +53,6 @@
 	_dataReqeust = [[AFHTTPSessionManager alloc] initWithBaseURL:URL];
     [_dataReqeust.requestSerializer setTimeoutInterval:kRequestTimeout];
 	_dataReqeust.responseSerializer = [AFImageResponseSerializer new];
-
-    // vlc player
-    _player = [[VLCMediaPlayer alloc] initWithOptions:nil];
-    _player.drawable = _videoView;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -199,8 +194,8 @@
 		_batteryLevelLabel.text = @"?";
         _expoSlider.enabled = NO;
             
-        if ((_player.playing || _player.willPlay))
-            [_player stop];
+        if (_player)
+            [self _stopPlay];
         break;
     case CS_Running:
 	case CS_Recording:
@@ -216,16 +211,9 @@
             CGFloat rotateDegree = 90.0 * [_rotateControl selectedSegmentIndex] / 180.0 * M_PI;
             _videoView.transform = CGAffineTransformMakeRotation(rotateDegree);
             _videoView.frame = CGRectMake(0, 0, _videoView.superview.frame.size.width, _videoView.superview.frame.size.height);
-                
-            if (!(_player.playing || _player.willPlay))
-            {
-                if (_rtspUrl.length)
-                {
-                    _player.media = [VLCMedia mediaWithURL:[NSURL URLWithString:_rtspUrl]];
-                    [_player play];
-                }
-            }
             
+            if (!_player && _rtspUrl.length)
+                [self _startPlay:_rtspUrl];
         break;
 
     default:
@@ -249,12 +237,48 @@
     }
     else
     {
-        if ((_player.playing || _player.willPlay))
-            [_player stop];
+        if (_player)
+            [self _stopPlay];
         
         if (CS_Running == _status)
             [self stopCapturing];
     }
+}
+
+- (void)_startPlay:(NSString*)url
+{
+    [IJKFFMoviePlayerController setLogReport:YES];
+    [IJKFFMoviePlayerController setLogLevel:k_IJK_LOG_DEBUG];
+    
+    IJKFFOptions* options = [IJKFFOptions optionsByDefault];
+    
+    [options setFormatOptionIntValue:1024 * 16 forKey:@"probesize"];
+    [options setFormatOptionIntValue:50000 forKey:@"analyzeduration"];
+    
+    [options setCodecOptionIntValue:IJK_AVDISCARD_DEFAULT forKey:@"skip_loop_filter"];
+    [options setCodecOptionIntValue:IJK_AVDISCARD_DEFAULT forKey:@"skip_frame"];
+    
+    [options setPlayerOptionIntValue:0 forKey:@"videotoolbox"];
+    [options setPlayerOptionIntValue:3000 forKey:@"max_cached_duration"];
+    [options setPlayerOptionIntValue:1 forKey:@"infbuf"];
+    [options setPlayerOptionIntValue:0 forKey:@"packet-buffering"];
+    
+    _player = [[IJKFFMoviePlayerController alloc] initWithContentURLString:url withOptions:options];
+    [_videoView addSubview:_player.view];
+    _player.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    _player.view.frame = _videoView.bounds;
+    _player.scalingMode = IJKMPMovieScalingModeAspectFit;
+    _player.shouldAutoplay = YES;
+    
+    [_player prepareToPlay];
+}
+
+- (void)_stopPlay
+{
+    [_player stop];
+    [_player shutdown];
+    [_player.view removeFromSuperview];
+    _player = nil;
 }
 
 @end
