@@ -259,7 +259,7 @@
     [options setCodecOptionIntValue:IJK_AVDISCARD_DEFAULT forKey:@"skip_frame"];
     
     [options setPlayerOptionIntValue:0 forKey:@"videotoolbox"];
-    [options setPlayerOptionIntValue:3000 forKey:@"max_cached_duration"];
+    [options setPlayerOptionIntValue:100 forKey:@"max_cached_duration"];
     [options setPlayerOptionIntValue:1 forKey:@"infbuf"];
     [options setPlayerOptionIntValue:0 forKey:@"packet-buffering"];
     
